@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>207</y>
+      <w>216</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>RestaurantPhoneBook
+--
+-city: String
+-country: String
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>621</x>
+      <y>207</y>
+      <w>243</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>RestaurantContact
+--
+-belongsTo: RestaurantPhonebook
+-name: String
+-cuisine: String
+-phoneNumber: String
+-address: String
+-tables: int
+-rating: double
+-established: LocalDate
+-wheelchairAccessible: boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>423</x>
+      <y>225</y>
+      <w>216</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+contains
+m2=0..n
+m1=1
+</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+  </element>
+</diagram>
