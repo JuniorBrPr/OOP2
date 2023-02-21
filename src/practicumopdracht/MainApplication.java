@@ -1,9 +1,15 @@
 package practicumopdracht;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import practicumopdracht.views.RestaurantContactView;
+
 
 public class MainApplication extends Application {
+    private String TITLE = String.format("Practicumopdracht OOP2 - %s", Main.studentNaam);
+    private int WIDTH = 640;
+    private int HEIGHT = 480;
 
     @Override
     public void start(Stage stage) {
@@ -14,9 +20,13 @@ public class MainApplication extends Application {
             return;
         }
 
-        stage.setTitle(String.format("Practicumopdracht OOP2 - %s", Main.studentNaam));
-        stage.setWidth(640);
-        stage.setHeight(480);
+        stage.setTitle(TITLE);
+        stage.setWidth(WIDTH);
+        stage.setHeight(HEIGHT);
+
+        RestaurantContactView restaurantContactView = new RestaurantContactView();
+
+        stage.setScene(new Scene(restaurantContactView.getRoot()));
         stage.show();
     }
 }
