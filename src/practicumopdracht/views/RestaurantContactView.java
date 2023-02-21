@@ -1,52 +1,51 @@
 package practicumopdracht.views;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import practicumopdracht.models.RestaurantContact;
 
+import static java.lang.Integer.MAX_VALUE;
 
 public class RestaurantContactView extends View {
 
-    private Label titleLabel;
-    private Label nameLabel;
     private TextField nameField;
-    private Label cuisineLabel;
     private ComboBox<String> cuisineField;
-    private Label phoneNumberLabel;
     private TextField phoneNumberField;
-    private Label addressLabel;
     private TextArea addressField;
-    private Label tablesLabel;
     private TextField tablesField;
-    private Label ratingLabel;
     private TextField ratingField;
-    private Label establishedLabel;
     private DatePicker establishedField;
-    private Label wheelchairAccessibleLabel;
     private CheckBox wheelchairAccessibleField;
+    private ListView<RestaurantContact> restaurantContactListView;
     private Button saveButton;
+    private Button deleteButton;
+    private Button newButton;
     private Button cancelButton;
-
 
     @Override
     protected void initializeView() {
-        VBox mainPanel = new VBox();
-        mainPanel.setSpacing(20);
+        GridPane mainPanel = new GridPane();
+        mainPanel.setPadding(new Insets(10));
+        mainPanel.setAlignment(Pos.CENTER);
+        mainPanel.setHgap(20);
+        mainPanel.setVgap(25);
 
         Font smallFont = Font.font("Helvetica", FontWeight.BLACK, 16);
         Font largeFont = Font.font("Helvetica", FontWeight.BOLD, 36);
 
         HBox titleBox = new HBox();
-        titleBox.setAlignment(Pos.CENTER);
+        titleBox.setAlignment(Pos.TOP_CENTER);
         titleBox.setBorder(new Border(
                 new BorderStroke(
                         Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT
                 )));
 
-        titleLabel = new Label("Restaurant Contact");
+        Label titleLabel = new Label("Restaurant Contact");
         titleLabel.setFont(largeFont);
         titleLabel.setAlignment(Pos.CENTER);
 
@@ -56,7 +55,7 @@ public class RestaurantContactView extends View {
         nameBox.setSpacing(10);
         nameBox.setAlignment(Pos.CENTER_RIGHT);
 
-        nameLabel = new Label("Name:");
+        Label nameLabel = new Label("Name:");
         nameLabel.setFont(smallFont);
         nameLabel.setLabelFor(nameField);
         nameLabel.setAlignment(Pos.CENTER_RIGHT);
@@ -68,9 +67,9 @@ public class RestaurantContactView extends View {
 
         HBox cuisineBox = new HBox();
         cuisineBox.setSpacing(10);
-        cuisineBox.setAlignment(Pos.CENTER);
+        cuisineBox.setAlignment(Pos.TOP_LEFT);
 
-        cuisineLabel = new Label("Cuisine:");
+        Label cuisineLabel = new Label("Cuisine:");
         cuisineLabel.setFont(smallFont);
         cuisineLabel.setLabelFor(cuisineField);
         cuisineLabel.setAlignment(Pos.CENTER_RIGHT);
@@ -86,7 +85,7 @@ public class RestaurantContactView extends View {
         phoneNumberBox.setSpacing(10);
         phoneNumberBox.setAlignment(Pos.CENTER_RIGHT);
 
-        phoneNumberLabel = new Label("Phone Number:");
+        Label phoneNumberLabel = new Label("Phone Number:");
         phoneNumberLabel.setFont(smallFont);
         phoneNumberLabel.setLabelFor(phoneNumberField);
         phoneNumberLabel.setAlignment(Pos.CENTER_RIGHT);
@@ -100,7 +99,7 @@ public class RestaurantContactView extends View {
         tablesBox.setAlignment(Pos.CENTER_RIGHT);
         tablesBox.setSpacing(10);
 
-        tablesLabel = new Label("Tables:");
+        Label tablesLabel = new Label("Tables:");
         tablesLabel.setFont(smallFont);
         tablesLabel.setLabelFor(tablesField);
         tablesLabel.setAlignment(Pos.CENTER_RIGHT);
@@ -114,7 +113,7 @@ public class RestaurantContactView extends View {
         ratingBox.setAlignment(Pos.BOTTOM_RIGHT);
         ratingBox.setSpacing(10);
 
-        ratingLabel = new Label("Rating:");
+        Label ratingLabel = new Label("Rating:");
         ratingLabel.setFont(smallFont);
         ratingLabel.setLabelFor(ratingField);
         ratingLabel.setAlignment(Pos.CENTER_RIGHT);
@@ -125,133 +124,97 @@ public class RestaurantContactView extends View {
         ratingBox.getChildren().addAll(ratingLabel, ratingField);
 
         VBox addressBox = new VBox();
-        addressBox.setAlignment(Pos.CENTER_RIGHT);
+        addressBox.setAlignment(Pos.CENTER_LEFT);
         addressBox.setSpacing(10);
 
-        addressLabel = new Label("Address:");
+        Label addressLabel = new Label("Address:");
         addressLabel.setFont(smallFont);
         addressLabel.setLabelFor(addressField);
-        addressLabel.setAlignment(Pos.CENTER);
 
         addressField = new TextArea();
         addressField.setPromptText("Restaurant address");
         addressField.setPrefRowCount(3);
         addressField.setPrefColumnCount(20);
+
         addressBox.getChildren().addAll(addressLabel, addressField);
 
         HBox establishedBox = new HBox();
-        establishedLabel = new Label("Established");
+        establishedBox.setSpacing(10);
+        establishedBox.setAlignment(Pos.CENTER_RIGHT);
+
+        Label establishedLabel = new Label("Established:");
+        establishedLabel.setFont(smallFont);
+        establishedLabel.setLabelFor(establishedField);
+        establishedLabel.setAlignment(Pos.CENTER_LEFT);
+
         establishedField = new DatePicker();
+        establishedField.setPromptText("Date of establishment");
+
         establishedBox.getChildren().addAll(establishedLabel, establishedField);
 
         HBox wheelchairAccessibleBox = new HBox();
-        wheelchairAccessibleLabel = new Label("Wheelchair Accessible");
+        wheelchairAccessibleBox.setSpacing(10);
+        wheelchairAccessibleBox.setAlignment(Pos.CENTER_LEFT);
+
+        Label wheelchairAccessibleLabel = new Label("Wheelchair Accessible:");
+        wheelchairAccessibleLabel.setFont(smallFont);
+        wheelchairAccessibleLabel.setLabelFor(wheelchairAccessibleField);
+
         wheelchairAccessibleField = new CheckBox();
+
         wheelchairAccessibleBox.getChildren().addAll(wheelchairAccessibleLabel, wheelchairAccessibleField);
 
-        HBox buttonBox = new HBox();
-        buttonBox.setSpacing(10);
-        saveButton = new Button("Save");
-        cancelButton = new Button("Cancel");
-        buttonBox.getChildren().addAll(saveButton, cancelButton);
-
         VBox vContainerLeft = new VBox();
-        vContainerLeft.setAlignment(Pos.CENTER);
         vContainerLeft.setSpacing(10);
-        vContainerLeft.getChildren().addAll(nameBox,phoneNumberBox, tablesBox, ratingBox, establishedBox);
+        vContainerLeft.setAlignment(Pos.CENTER_LEFT);
+        vContainerLeft.setPrefWidth(MAX_VALUE);
+        vContainerLeft.getChildren().addAll(nameBox, phoneNumberBox, tablesBox, ratingBox, establishedBox);
 
         VBox vContainerRight = new VBox();
-        vContainerRight.setAlignment(Pos.CENTER);
+        vContainerRight.setAlignment(Pos.CENTER_RIGHT);
         vContainerRight.setSpacing(10);
+        vContainerRight.setPrefWidth(MAX_VALUE);
         vContainerRight.getChildren().addAll(cuisineBox, addressBox, wheelchairAccessibleBox);
 
-        HBox container = new HBox();
-        container.setAlignment(Pos.CENTER);
-        container.setSpacing(20);
-        container.getChildren().addAll(vContainerLeft, vContainerRight);
+        VBox listContainer = new VBox();
 
+        restaurantContactListView = new ListView<>();
+        restaurantContactListView.setPrefHeight(100);
+        restaurantContactListView.setPlaceholder(new Label("No restaurant contacts added yet."));
 
-        mainPanel.getChildren()
-                .addAll(
-                        titleBox, container, buttonBox
-                );
+        HBox listButtonBox = new HBox();
+        listButtonBox.setSpacing(10);
+
+        deleteButton = new Button("Delete");
+        deleteButton.setPrefWidth(MAX_VALUE);
+        deleteButton.setFont(smallFont);
+        deleteButton.setAlignment(Pos.CENTER);
+
+        newButton = new Button("New");
+        newButton.setPrefWidth(MAX_VALUE);
+        newButton.setFont(smallFont);
+        newButton.setAlignment(Pos.CENTER);
+
+        listButtonBox.getChildren().addAll(deleteButton, newButton);
+        listContainer.getChildren().addAll(restaurantContactListView, listButtonBox);
+
+        cancelButton = new Button("Cancel");
+        cancelButton.setPrefWidth(MAX_VALUE);
+        cancelButton.setFont(smallFont);
+        cancelButton.setAlignment(Pos.CENTER);
+
+        saveButton = new Button("Save");
+        saveButton.setPrefWidth(MAX_VALUE);
+        saveButton.setFont(smallFont);
+        saveButton.setAlignment(Pos.CENTER);
+
+        mainPanel.add(titleBox, 0, 0, 2, 1);
+        mainPanel.add(vContainerLeft, 0, 1);
+        mainPanel.add(vContainerRight, 1, 1);
+        mainPanel.add(saveButton, 0, 2, 2, 1);
+        mainPanel.add(listContainer, 0, 3, 2, 1);
+        mainPanel.add(cancelButton, 0, 4, 2, 1);
 
         root = mainPanel;
-    }
-
-    public Label getTitleLabel() {
-        return titleLabel;
-    }
-
-    public Label getNameLabel() {
-        return nameLabel;
-    }
-
-    public TextField getNameField() {
-        return nameField;
-    }
-
-    public Label getCuisineLabel() {
-        return cuisineLabel;
-    }
-
-    public ComboBox<String> getCuisineField() {
-        return cuisineField;
-    }
-
-    public Label getPhoneNumberLabel() {
-        return phoneNumberLabel;
-    }
-
-    public TextField getPhoneNumberField() {
-        return phoneNumberField;
-    }
-
-    public Label getAddressLabel() {
-        return addressLabel;
-    }
-
-    public TextArea getAddressField() {
-        return addressField;
-    }
-
-    public Label getTablesLabel() {
-        return tablesLabel;
-    }
-
-    public TextField getTablesField() {
-        return tablesField;
-    }
-
-    public Label getRatingLabel() {
-        return ratingLabel;
-    }
-
-    public TextField getRatingField() {
-        return ratingField;
-    }
-
-    public Label getEstablishedLabel() {
-        return establishedLabel;
-    }
-
-    public DatePicker getEstablishedField() {
-        return establishedField;
-    }
-
-    public Label getWheelchairAccessibleLabel() {
-        return wheelchairAccessibleLabel;
-    }
-
-    public CheckBox getWheelchairAccessibleField() {
-        return wheelchairAccessibleField;
-    }
-
-    public Button getSaveButton() {
-        return saveButton;
-    }
-
-    public Button getCancelButton() {
-        return cancelButton;
     }
 }
