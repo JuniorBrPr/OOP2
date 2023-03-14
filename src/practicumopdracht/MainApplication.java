@@ -28,7 +28,7 @@ public class MainApplication extends Application {
         RestaurantContactView restaurantContactView = new RestaurantContactView();
         RestaurantPhoneBookView restaurantPhoneBookView = new RestaurantPhoneBookView();
 
-        stage.setScene(new Scene(restaurantPhoneBookView.getRoot()));
+        stage.setScene(new Scene(restaurantContactView.getRoot()));
         stage.show();
     }
 }
