@@ -8,9 +8,9 @@ import practicumopdracht.views.RestaurantPhoneBookView;
 
 
 public class MainApplication extends Application {
-    private String TITLE = String.format("Practicumopdracht OOP2 - %s", Main.studentNaam);
-    private int WIDTH = 640;
-    private int HEIGHT = 580;
+    private final String TITLE = String.format("Practicumopdracht OOP2 - %s", Main.studentNaam);
+    private final int WIDTH = 640;
+    private final int HEIGHT = 580;
 
     @Override
     public void start(Stage stage) {
@@ -28,7 +28,7 @@ public class MainApplication extends Application {
         RestaurantContactView restaurantContactView = new RestaurantContactView();
         RestaurantPhoneBookView restaurantPhoneBookView = new RestaurantPhoneBookView();
 
-        stage.setScene(new Scene(restaurantContactView.getRoot()));
+        stage.setScene(new Scene(restaurantPhoneBookView.getRoot()));
         stage.show();
     }
 }
