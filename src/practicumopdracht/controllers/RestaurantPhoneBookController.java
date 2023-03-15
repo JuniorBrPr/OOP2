@@ -9,7 +9,7 @@ import practicumopdracht.views.View;
 import java.time.LocalDate;
 
 public class RestaurantPhoneBookController extends Controller {
-    private RestaurantPhoneBookView view;
+    private final RestaurantPhoneBookView view;
 
     public RestaurantPhoneBookController() {
         this.view = new RestaurantPhoneBookView();

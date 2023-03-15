@@ -8,14 +8,14 @@ import practicumopdracht.views.RestaurantContactView;
 import practicumopdracht.views.View;
 
 public class RetaurantContactController extends Controller {
-    private RestaurantContactView view;
+    private final RestaurantContactView view;
 
     public RetaurantContactController() {
         this.view = new RestaurantContactView();
         save();
         newRestaurantContact();
         delete();
-        select();
+        switchView();
     }
 
     @Override
@@ -69,7 +69,7 @@ public class RetaurantContactController extends Controller {
         });
     }
 
-    private void select() {
+    private void switchView() {
         view.getRestaurantsViewButton().setOnAction(event ->
                 MainApplication.switchController(new RestaurantPhoneBookController()));
     }
