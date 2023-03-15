@@ -12,6 +12,17 @@ import practicumopdracht.models.RestaurantPhoneBook;
 import static java.lang.Integer.MAX_VALUE;
 
 public class RestaurantPhoneBookView extends View {
+    private Button saveButton;
+    private Button newButton;
+    private Button deleteButton;
+    private Button selectButton;
+    private ListView<RestaurantPhoneBook> restaurantPhoneBookList;
+    private TextField nameField;
+    private TextField cuisineField;
+    private TextField ratingField;
+    private TextField tablesField;
+    private DatePicker establishedField;
+    private CheckBox wheelchairAccessibleField;
 
     @Override
     protected void initializeView() {
@@ -29,7 +40,8 @@ public class RestaurantPhoneBookView extends View {
                 )));
         titleBox.setAlignment(Pos.TOP_CENTER);
         titleBox.getChildren().add(titleLabel);
-        TextField nameField = new TextField();
+
+        nameField = new TextField();
         nameField.setPromptText("Restaurant Name");
 
         Label nameLabel = new Label("Name:");
@@ -39,7 +51,7 @@ public class RestaurantPhoneBookView extends View {
         HBox nameBox = new HBox();
         nameBox.getChildren().addAll(nameLabel, nameField);
 
-        TextField cuisineField = new TextField();
+        cuisineField = new TextField();
         cuisineField.setPromptText("Cuisine");
         cuisineField.setPrefWidth(MAX_VALUE);
 
@@ -49,7 +61,7 @@ public class RestaurantPhoneBookView extends View {
         HBox cuisineBox = new HBox();
         cuisineBox.getChildren().addAll(cuisineLabel, cuisineField);
 
-        TextField ratingField = new TextField();
+        ratingField = new TextField();
         ratingField.setPromptText("Restaurant Rating (0-10.0))");
         ratingField.setPrefWidth(MAX_VALUE);
 
@@ -59,7 +71,7 @@ public class RestaurantPhoneBookView extends View {
         HBox ratingBox = new HBox();
         ratingBox.getChildren().addAll(ratingLabel, ratingField);
 
-        TextField tablesField = new TextField();
+        tablesField = new TextField();
         tablesField.setPromptText("City");
 
         Label tablesLabel = new Label("Tables:");
@@ -68,7 +80,7 @@ public class RestaurantPhoneBookView extends View {
         HBox tablesBox = new HBox();
         tablesBox.getChildren().addAll(tablesLabel, tablesField);
 
-        DatePicker establishedField = new DatePicker();
+        establishedField = new DatePicker();
         establishedField.setPromptText("Date of establishment");
 
         Label establishedLabel = new Label("Established:");
@@ -77,7 +89,7 @@ public class RestaurantPhoneBookView extends View {
         HBox establishedBox = new HBox();
         establishedBox.getChildren().addAll(establishedLabel, establishedField);
 
-        CheckBox wheelchairAccessibleField = new CheckBox();
+        wheelchairAccessibleField = new CheckBox();
 
         Label wheelchairAccessibleLabel = new Label("Wheelchair Accessible:");
         wheelchairAccessibleLabel.setLabelFor(wheelchairAccessibleField);
@@ -122,39 +134,84 @@ public class RestaurantPhoneBookView extends View {
             }
         });
 
-        Button saveButton = new Button("Save");
-        saveButton.setFont(smallFont);
-        saveButton.setPrefWidth(MAX_VALUE);
+        this.saveButton = new Button("Save");
+        this.saveButton.setFont(smallFont);
+        this.saveButton.setPrefWidth(MAX_VALUE);
 
-        ListView<RestaurantPhoneBook> restaurantPhoneBookList = new ListView<>();
+        restaurantPhoneBookList = new ListView<>();
         restaurantPhoneBookList.setPlaceholder(new Label("No restaurant phone books added yet"));
 
-        Button newButton = new Button("New");
-        newButton.setFont(smallFont);
-        newButton.setPrefWidth(MAX_VALUE);
+        this.newButton = new Button("New");
+        this.newButton.setFont(smallFont);
+        this.newButton.setPrefWidth(MAX_VALUE);
 
-        Button deleteButton = new Button("Delete");
-        deleteButton.setFont(smallFont);
-        deleteButton.setPrefWidth(MAX_VALUE);
+        this.deleteButton = new Button("Delete");
+        this.deleteButton.setFont(smallFont);
+        this.deleteButton.setPrefWidth(MAX_VALUE);
 
         HBox listButtonBox = new HBox();
         listButtonBox.setSpacing(10);
-        listButtonBox.getChildren().addAll(deleteButton, newButton);
+        listButtonBox.getChildren().addAll(this.deleteButton, this.newButton);
 
         VBox listContainer = new VBox();
         listContainer.getChildren().addAll(restaurantPhoneBookList, listButtonBox);
 
-        Button selectButton = new Button("Select");
-        selectButton.setFont(smallFont);
-        selectButton.setPrefWidth(MAX_VALUE);
+
+        this.selectButton = new Button("Select");
+        this.selectButton.setFont(smallFont);
+        this.selectButton.setPrefWidth(MAX_VALUE);
 
         VBox mainPanel = new VBox();
         mainPanel.setSpacing(10);
         mainPanel.setAlignment(Pos.CENTER);
         mainPanel.setPadding(new Insets(10));
         mainPanel.getChildren().addAll(titleBox, restaurantDetailsGrid,
-                saveButton, listContainer, selectButton);
+                this.saveButton, listContainer, this.selectButton);
 
         root = mainPanel;
+    }
+
+    public Button getSaveButton() {
+        return saveButton;
+    }
+
+    public Button getNewButton() {
+        return newButton;
+    }
+
+    public Button getDeleteButton() {
+        return deleteButton;
+    }
+
+    public Button getSelectButton() {
+        return selectButton;
+    }
+
+    public ListView<RestaurantPhoneBook> getRestaurantPhoneBookList() {
+        return restaurantPhoneBookList;
+    }
+
+    public TextField getNameField() {
+        return nameField;
+    }
+
+    public TextField getCuisineField() {
+        return cuisineField;
+    }
+
+    public TextField getRatingField() {
+        return ratingField;
+    }
+
+    public TextField getTablesField() {
+        return tablesField;
+    }
+
+    public DatePicker getEstablishedField() {
+        return establishedField;
+    }
+
+    public CheckBox getWheelchairAccessibleField() {
+        return wheelchairAccessibleField;
     }
 }

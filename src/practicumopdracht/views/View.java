@@ -2,7 +2,7 @@ package practicumopdracht.views;
 
 import javafx.scene.Parent;
 
-abstract class View {
+public abstract class View {
 
     protected Parent root;
 

@@ -13,6 +13,15 @@ import practicumopdracht.models.RestaurantPhoneBook;
 import static java.lang.Integer.MAX_VALUE;
 
 public class RestaurantContactView extends View {
+    private Button newButton;
+    private Button saveButton;
+    private Button deleteButton;
+    private Button restaurantsViewButton;
+    private ComboBox<RestaurantPhoneBook> restaurantsComboBox;
+    private TextField nameField;
+    private TextField phoneNumberField;
+    private TextArea addressField;
+    private ListView<RestaurantContact> restaurantContactListView;
 
     @Override
     protected void initializeView() {
@@ -30,7 +39,7 @@ public class RestaurantContactView extends View {
                 )));
         titleBox.getChildren().add(titleLabel);
 
-        ComboBox<RestaurantPhoneBook> restaurantsComboBox = new ComboBox<>();
+        restaurantsComboBox = new ComboBox<>();
         restaurantsComboBox.setPrefWidth(MAX_VALUE);
         restaurantsComboBox.setPromptText("Select restaurant");
         Label restaurantsLabel = new Label("Restaurants:");
@@ -40,14 +49,14 @@ public class RestaurantContactView extends View {
         restaurantsBox.setAlignment(Pos.CENTER);
         restaurantsBox.getChildren().addAll(restaurantsLabel, restaurantsComboBox);
 
-        TextField nameField = new TextField();
+        nameField = new TextField();
         nameField.setPromptText("Restaurant name");
         Label nameLabel = new Label("Name:");
         nameLabel.setLabelFor(nameField);
         HBox nameBox = new HBox();
         nameBox.getChildren().addAll(nameLabel, nameField);
 
-        TextField phoneNumberField = new TextField();
+        phoneNumberField = new TextField();
         phoneNumberField.setPromptText("Insert number");
         Label phoneNumberLabel = new Label("Phone Number:");
         phoneNumberLabel.setLabelFor(phoneNumberField);
@@ -57,7 +66,7 @@ public class RestaurantContactView extends View {
         HBox nameAndPhoneBox = new HBox();
         nameAndPhoneBox.getChildren().addAll(nameBox, phoneNumberBox);
 
-        TextArea addressField = new TextArea();
+        addressField = new TextArea();
         addressField.setPromptText("Restaurant address");
         addressField.setPrefRowCount(3);
         addressField.setPrefColumnCount(20);
@@ -66,18 +75,18 @@ public class RestaurantContactView extends View {
         VBox addressBox = new VBox();
         addressBox.getChildren().addAll(addressLabel, addressField);
 
-        Button saveButton = new Button("Save");
+        saveButton = new Button("Save");
 
-        ListView<RestaurantContact> restaurantContactListView = new ListView<>();
+        restaurantContactListView = new ListView<>();
         restaurantContactListView.setPrefHeight(100);
         restaurantContactListView.setPrefWidth(MAX_VALUE);
         restaurantContactListView.setPlaceholder(new Label("No restaurant contacts added yet."));
 
-        Button newButton = new Button("New");
-        Button deleteButton = new Button("Delete");
-        Button restaurantsViewButton = new Button("Go to restaurants");
+        this.newButton = new Button("New");
+        this.deleteButton = new Button("Delete");
+        this.restaurantsViewButton = new Button("Go to restaurants");
         HBox listButtonBox = new HBox();
-        listButtonBox.getChildren().addAll(deleteButton, newButton, restaurantsViewButton);
+        listButtonBox.getChildren().addAll(this.deleteButton, this.newButton, this.restaurantsViewButton);
 
         VBox mainPanel = new VBox();
         mainPanel.setSpacing(10);
@@ -130,5 +139,41 @@ public class RestaurantContactView extends View {
         titleLabel.setFont(largeFont);
 
         root = mainPanel;
+    }
+
+    public Button getNewButton() {
+        return newButton;
+    }
+
+    public Button getSaveButton() {
+        return saveButton;
+    }
+
+    public Button getDeleteButton() {
+        return deleteButton;
+    }
+
+    public Button getRestaurantsViewButton() {
+        return restaurantsViewButton;
+    }
+
+    public ComboBox<RestaurantPhoneBook> getRestaurantsComboBox() {
+        return restaurantsComboBox;
+    }
+
+    public TextField getNameField() {
+        return nameField;
+    }
+
+    public TextField getPhoneNumberField() {
+        return phoneNumberField;
+    }
+
+    public TextArea getAddressField() {
+        return addressField;
+    }
+
+    public ListView<RestaurantContact> getRestaurantContactListView() {
+        return restaurantContactListView;
     }
 }
