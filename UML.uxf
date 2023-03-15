@@ -7,7 +7,7 @@
       <x>297</x>
       <y>612</y>
       <w>198</w>
-      <h>135</h>
+      <h>144</h>
     </coordinates>
     <panel_attributes>&lt;&lt;models&gt;&gt;
 RestaurantPhoneBook
@@ -18,6 +18,8 @@ RestaurantPhoneBook
 -rating: double
 -established: LocalDate
 -wheelchairAccessible: boolean
+--
++toString(): String
 
 
 </panel_attributes>
@@ -29,7 +31,7 @@ RestaurantPhoneBook
       <x>549</x>
       <y>612</y>
       <w>207</w>
-      <h>117</h>
+      <h>135</h>
     </coordinates>
     <panel_attributes>&lt;&lt;models&gt;&gt;
 RestaurantContact
@@ -38,7 +40,9 @@ RestaurantContact
 -name: String
 -cuisine: String
 -phoneNumber: String
--address: String</panel_attributes>
+-address: String
+--
++toString(): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -233,10 +237,10 @@ RestaurantPhoneBookController
 -view: RestaurantPhoneBookView
 --
 +getView(): View
-+save(): void
-+newRestaurant(): void
-+delete(): void
-+select(): void
++handleSave(): void
++handleNewRestaurant(): void
++handleDelete(): void
++handleSelect(): void
 +validate(): String</panel_attributes>
     <additional_attributes/>
   </element>
@@ -254,10 +258,10 @@ RestaurantContactController
 -view: RestaurantContactView
 --
 +getView(): View
-+save(): void
-+newRestaurantContact(): void
-+delete(): void
-+switchView(): void
++handleSave(): void
++handleNewRestaurantContact(): void
++handleDelete(): void
++handleSwitchView(): void
 +validate(): String</panel_attributes>
     <additional_attributes/>
   </element>

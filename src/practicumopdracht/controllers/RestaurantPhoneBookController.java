@@ -13,10 +13,10 @@ public class RestaurantPhoneBookController extends Controller {
 
     public RestaurantPhoneBookController() {
         this.view = new RestaurantPhoneBookView();
-        save();
-        newRestaurant();
-        delete();
-        select();
+        view.getSaveButton().setOnAction(event -> handleSave());
+        view.getNewButton().setOnAction(event -> handleNewRestaurant());
+        view.getDeleteButton().setOnAction(event -> handleDelete());
+        view.getSelectButton().setOnAction(event -> handleSelect());
     }
 
     @Override
@@ -24,59 +24,54 @@ public class RestaurantPhoneBookController extends Controller {
         return view;
     }
 
-    private void save() {
-        view.getSaveButton().setOnAction(event -> {
-            String mistakes = validate();
-            if (!mistakes.isBlank()) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Error");
-                alert.setHeaderText("Mistakes found".toUpperCase());
-                alert.setContentText(mistakes);
-                alert.showAndWait();
-            } else {
-                RestaurantPhoneBook restaurantPhoneBook = new RestaurantPhoneBook(
-                        view.getNameField().getText(),
-                        view.getCuisineField().getText(),
-                        Integer.parseInt(view.getTablesField().getText()),
-                        Double.parseDouble(view.getRatingField().getText()),
-                        view.getEstablishedField().getValue(),
-                        view.getWheelchairAccessibleField().isSelected()
-                );
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Saved");
-                alert.setHeaderText("Saved".toUpperCase());
-                alert.setContentText(restaurantPhoneBook.toString());
-                alert.showAndWait();
-                view.getNameField().setText("");
-                view.getCuisineField().setText("");
-                view.getTablesField().setText("");
-                view.getRatingField().setText("");
-                view.getEstablishedField().setValue(null);
-                view.getWheelchairAccessibleField().setSelected(false);
-            }
-        });
-    }
-
-    private void newRestaurant() {
-        view.getNewButton().setOnAction(event -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("New Restaurant");
-            alert.setHeaderText("New Restaurant".toUpperCase());
+    private void handleSave() {
+        String mistakes = validate();
+        if (!mistakes.isBlank()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("Mistakes found".toUpperCase());
+            alert.setContentText(mistakes);
             alert.showAndWait();
-        });
-    }
-
-    private void delete() {
-        view.getDeleteButton().setOnAction(event -> {
+        } else {
+            RestaurantPhoneBook restaurantPhoneBook = new RestaurantPhoneBook(
+                    view.getNameField().getText(),
+                    view.getCuisineField().getText(),
+                    Integer.parseInt(view.getTablesField().getText()),
+                    Double.parseDouble(view.getRatingField().getText()),
+                    view.getEstablishedField().getValue(),
+                    view.getWheelchairAccessibleField().isSelected()
+            );
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Delete");
-            alert.setHeaderText("Delete".toUpperCase());
+            alert.setTitle("Saved");
+            alert.setHeaderText("Saved".toUpperCase());
+            alert.setContentText(restaurantPhoneBook.toString());
             alert.showAndWait();
-        });
+            view.getNameField().setText("");
+            view.getCuisineField().setText("");
+            view.getTablesField().setText("");
+            view.getRatingField().setText("");
+            view.getEstablishedField().setValue(null);
+            view.getWheelchairAccessibleField().setSelected(false);
+        }
+
     }
 
-    private void select() {
-        view.getSelectButton().setOnAction(event -> MainApplication.switchController(new RetaurantContactController()));
+    private void handleNewRestaurant() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("New Restaurant");
+        alert.setHeaderText("New Restaurant".toUpperCase());
+        alert.showAndWait();
+    }
+
+    private void handleDelete() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Delete");
+        alert.setHeaderText("Delete".toUpperCase());
+        alert.showAndWait();
+    }
+
+    private void handleSelect() {
+        MainApplication.switchController(new RetaurantContactController());
     }
 
     private String validate() {

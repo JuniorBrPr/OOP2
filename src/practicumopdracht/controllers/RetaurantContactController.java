@@ -12,10 +12,11 @@ public class RetaurantContactController extends Controller {
 
     public RetaurantContactController() {
         this.view = new RestaurantContactView();
-        save();
-        newRestaurantContact();
-        delete();
-        switchView();
+
+        view.getSaveButton().setOnAction(event -> handleSave());
+        view.getNewButton().setOnAction(event -> handleNewRestaurantContact());
+        view.getDeleteButton().setOnAction(event -> handleDelete());
+        view.getRestaurantsViewButton().setOnAction(event -> handleSwitchView());
     }
 
     @Override
@@ -23,55 +24,48 @@ public class RetaurantContactController extends Controller {
         return view;
     }
 
-    private void save() {
-        view.getSaveButton().setOnAction(event -> {
-            String mistakes = validate();
-            if (!mistakes.isBlank()) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Error");
-                alert.setHeaderText("Mistakes found".toUpperCase());
-                alert.setContentText(mistakes);
-                alert.showAndWait();
-            } else {
-                RestaurantContact restaurantContact = new RestaurantContact(
-                        new RestaurantPhoneBook(),
-                        view.getNameField().getText(),
-                        view.getPhoneNumberField().getText(),
-                        view.getAddressField().getText()
-                );
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Saved");
-                alert.setHeaderText("Saved".toUpperCase());
-                alert.setContentText(restaurantContact.toString());
-                alert.showAndWait();
-                view.getNameField().setText("");
-                view.getPhoneNumberField().setText("");
-                view.getAddressField().setText("");
-            }
-        });
-    }
-
-    private void newRestaurantContact() {
-        view.getNewButton().setOnAction(event -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("New Restaurant");
-            alert.setHeaderText("New Restaurant".toUpperCase());
+    private void handleSave() {
+        String mistakes = validate();
+        if (!mistakes.isBlank()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("Mistakes found".toUpperCase());
+            alert.setContentText(mistakes);
             alert.showAndWait();
-        });
-    }
-
-    private void delete() {
-        view.getDeleteButton().setOnAction(event -> {
+        } else {
+            RestaurantContact restaurantContact = new RestaurantContact(
+                    new RestaurantPhoneBook(),
+                    view.getNameField().getText(),
+                    view.getPhoneNumberField().getText(),
+                    view.getAddressField().getText()
+            );
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Delete");
-            alert.setHeaderText("Delete".toUpperCase());
+            alert.setTitle("Saved");
+            alert.setHeaderText("Saved".toUpperCase());
+            alert.setContentText(restaurantContact.toString());
             alert.showAndWait();
-        });
+            view.getNameField().setText("");
+            view.getPhoneNumberField().setText("");
+            view.getAddressField().setText("");
+        }
     }
 
-    private void switchView() {
-        view.getRestaurantsViewButton().setOnAction(event ->
-                MainApplication.switchController(new RestaurantPhoneBookController()));
+    private void handleNewRestaurantContact() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("New Restaurant");
+        alert.setHeaderText("New Restaurant".toUpperCase());
+        alert.showAndWait();
+    }
+
+    private void handleDelete() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Delete");
+        alert.setHeaderText("Delete".toUpperCase());
+        alert.showAndWait();
+    }
+
+    private void handleSwitchView() {
+        MainApplication.switchController(new RestaurantPhoneBookController());
     }
 
     private String validate() {
