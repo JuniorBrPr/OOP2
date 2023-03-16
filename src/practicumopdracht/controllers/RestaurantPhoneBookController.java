@@ -1,5 +1,6 @@
 package practicumopdracht.controllers;
 
+import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
 import practicumopdracht.MainApplication;
 import practicumopdracht.models.RestaurantPhoneBook;
@@ -17,6 +18,11 @@ public class RestaurantPhoneBookController extends Controller {
         view.getNewButton().setOnAction(event -> handleNewRestaurant());
         view.getDeleteButton().setOnAction(event -> handleDelete());
         view.getSelectButton().setOnAction(event -> handleSelect());
+        view.getRestaurantPhoneBookList()
+                .setItems(FXCollections
+                        .observableArrayList(MainApplication
+                                .getRestaurantPhoneBookDAO()
+                                .getAll()));
     }
 
     @Override
@@ -71,7 +77,10 @@ public class RestaurantPhoneBookController extends Controller {
     }
 
     private void handleSelect() {
-        MainApplication.switchController(new RetaurantContactController());
+        if(this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem() != null) {
+            MainApplication.switchController(new RetaurantContactController(
+                    this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem()));
+        }
     }
 
     private String validate() {
@@ -150,6 +159,7 @@ public class RestaurantPhoneBookController extends Controller {
 
         if (valid) {
             mistakes.delete(0, mistakes.length());
+
         }
 
         return mistakes.toString();

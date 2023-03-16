@@ -1,5 +1,6 @@
 package practicumopdracht.controllers;
 
+import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
 import practicumopdracht.MainApplication;
 import practicumopdracht.models.RestaurantContact;
@@ -10,13 +11,28 @@ import practicumopdracht.views.View;
 public class RetaurantContactController extends Controller {
     private final RestaurantContactView view;
 
-    public RetaurantContactController() {
+    public RetaurantContactController(RestaurantPhoneBook restaurantPhoneBook) {
         this.view = new RestaurantContactView();
 
         view.getSaveButton().setOnAction(event -> handleSave());
         view.getNewButton().setOnAction(event -> handleNewRestaurantContact());
         view.getDeleteButton().setOnAction(event -> handleDelete());
         view.getRestaurantsViewButton().setOnAction(event -> handleSwitchView());
+        view.getRestaurantsComboBox().setItems(FXCollections
+                .observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));
+        view.getRestaurantsComboBox().getSelectionModel().select(restaurantPhoneBook);
+
+        view.getRestaurantContactListView().setItems(FXCollections
+                .observableArrayList(MainApplication.getRestaurantContactDAO().getAllFor(restaurantPhoneBook)));
+
+        view.getRestaurantContactListView().getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        view.getNameField().setText(newValue.getName());
+                        view.getPhoneNumberField().setText(newValue.getPhoneNumber());
+                        view.getAddressField().setText(newValue.getAddress());
+                    }
+                });
     }
 
     @Override
@@ -32,13 +48,34 @@ public class RetaurantContactController extends Controller {
             alert.setHeaderText("Mistakes found".toUpperCase());
             alert.setContentText(mistakes);
             alert.showAndWait();
-        } else {
+        } else if (view.getRestaurantContactListView().getSelectionModel().getSelectedItem() != null) {
+//            view.getRestaurantContactListView().getSelectionModel().getSelectedItem()
+//                    .setName(view.getNameField().getText());
+//            view.getRestaurantContactListView().getSelectionModel().getSelectedItem()
+//                    .setPhoneNumber(view.getPhoneNumberField().getText());
+//            view.getRestaurantContactListView().getSelectionModel().getSelectedItem()
+//                    .setAddress(view.getAddressField().getText());
+//            view.getRestaurantContactListView().refresh();
+//
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Saved");
+//            alert.setHeaderText("Saved".toUpperCase());
+//            alert.setContentText(view.getRestaurantContactListView().getSelectionModel().getSelectedItem().toString());
+//            alert.showAndWait();
+//            view.getNameField().setText("");
+//            view.getPhoneNumberField().setText("");
+//            view.getAddressField().setText("");
+        } else if (view.getRestaurantContactListView().getSelectionModel().getSelectedItem() == null) {
             RestaurantContact restaurantContact = new RestaurantContact(
-                    new RestaurantPhoneBook(),
+                    view.getRestaurantsComboBox().getSelectionModel().getSelectedItem(),
                     view.getNameField().getText(),
                     view.getPhoneNumberField().getText(),
                     view.getAddressField().getText()
             );
+            MainApplication.getRestaurantContactDAO().addOrUpdate(restaurantContact);
+            view.getRestaurantContactListView().getItems().add(restaurantContact);
+            view.getRestaurantContactListView().refresh();
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Saved");
             alert.setHeaderText("Saved".toUpperCase());
@@ -51,10 +88,10 @@ public class RetaurantContactController extends Controller {
     }
 
     private void handleNewRestaurantContact() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("New Restaurant");
-        alert.setHeaderText("New Restaurant".toUpperCase());
-        alert.showAndWait();
+        this.view.getRestaurantContactListView().getSelectionModel().clearSelection();
+        view.getNameField().setText("");
+        view.getPhoneNumberField().setText("");
+        view.getAddressField().setText("");
     }
 
     private void handleDelete() {
@@ -110,4 +147,5 @@ public class RetaurantContactController extends Controller {
 
         return mistakes.toString();
     }
+
 }
