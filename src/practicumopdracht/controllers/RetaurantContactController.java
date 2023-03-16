@@ -2,6 +2,7 @@ package practicumopdracht.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import practicumopdracht.MainApplication;
 import practicumopdracht.models.RestaurantContact;
 import practicumopdracht.models.RestaurantPhoneBook;
@@ -17,16 +18,26 @@ public class RetaurantContactController extends Controller {
         view.getSaveButton().setOnAction(event -> handleSave());
         view.getNewButton().setOnAction(event -> handleNewRestaurantContact());
         view.getDeleteButton().setOnAction(event -> handleDelete());
+        view.getDeleteButton().setVisible(false);
         view.getRestaurantsViewButton().setOnAction(event -> handleSwitchView());
+
         view.getRestaurantsComboBox().setItems(FXCollections
                 .observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));
         view.getRestaurantsComboBox().getSelectionModel().select(restaurantPhoneBook);
+        view.getRestaurantsComboBox().getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        view.getRestaurantContactListView().setItems(FXCollections
+                                .observableArrayList(MainApplication.getRestaurantContactDAO().getAllFor(newValue)));
+                    }
+                });
 
         view.getRestaurantContactListView().setItems(FXCollections
                 .observableArrayList(MainApplication.getRestaurantContactDAO().getAllFor(restaurantPhoneBook)));
 
         view.getRestaurantContactListView().getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
+                    this.view.getDeleteButton().setVisible(observable != null);
                     if (newValue != null) {
                         view.getNameField().setText(newValue.getName());
                         view.getPhoneNumberField().setText(newValue.getPhoneNumber());
@@ -48,33 +59,27 @@ public class RetaurantContactController extends Controller {
             alert.setHeaderText("Mistakes found".toUpperCase());
             alert.setContentText(mistakes);
             alert.showAndWait();
-        } else if (view.getRestaurantContactListView().getSelectionModel().getSelectedItem() != null) {
-//            view.getRestaurantContactListView().getSelectionModel().getSelectedItem()
-//                    .setName(view.getNameField().getText());
-//            view.getRestaurantContactListView().getSelectionModel().getSelectedItem()
-//                    .setPhoneNumber(view.getPhoneNumberField().getText());
-//            view.getRestaurantContactListView().getSelectionModel().getSelectedItem()
-//                    .setAddress(view.getAddressField().getText());
-//            view.getRestaurantContactListView().refresh();
-//
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Saved");
-//            alert.setHeaderText("Saved".toUpperCase());
-//            alert.setContentText(view.getRestaurantContactListView().getSelectionModel().getSelectedItem().toString());
-//            alert.showAndWait();
-//            view.getNameField().setText("");
-//            view.getPhoneNumberField().setText("");
-//            view.getAddressField().setText("");
-        } else if (view.getRestaurantContactListView().getSelectionModel().getSelectedItem() == null) {
-            RestaurantContact restaurantContact = new RestaurantContact(
-                    view.getRestaurantsComboBox().getSelectionModel().getSelectedItem(),
-                    view.getNameField().getText(),
-                    view.getPhoneNumberField().getText(),
-                    view.getAddressField().getText()
-            );
+            view.getAddressField().setText("");
+        } else {
+            RestaurantContact restaurantContact;
+            if (view.getRestaurantContactListView().getSelectionModel().getSelectedItem() == null) {
+                restaurantContact = new RestaurantContact(
+                        view.getRestaurantsComboBox().getSelectionModel().getSelectedItem(),
+                        view.getNameField().getText(),
+                        view.getPhoneNumberField().getText(),
+                        view.getAddressField().getText()
+                );
+            } else {
+                restaurantContact = view.getRestaurantContactListView().getSelectionModel().getSelectedItem();
+                restaurantContact.setName(view.getNameField().getText());
+                restaurantContact.setPhoneNumber(view.getPhoneNumberField().getText());
+                restaurantContact.setAddress(view.getAddressField().getText());
+            }
+
             MainApplication.getRestaurantContactDAO().addOrUpdate(restaurantContact);
-            view.getRestaurantContactListView().getItems().add(restaurantContact);
-            view.getRestaurantContactListView().refresh();
+            view.getRestaurantContactListView().setItems(FXCollections
+                    .observableArrayList(MainApplication.getRestaurantContactDAO()
+                            .getAllFor(restaurantContact.getBelongsTo())));
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Saved");
@@ -95,10 +100,25 @@ public class RetaurantContactController extends Controller {
     }
 
     private void handleDelete() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Delete");
-        alert.setHeaderText("Delete".toUpperCase());
+        RestaurantContact restaurantContact = view.getRestaurantContactListView().getSelectionModel().getSelectedItem();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + restaurantContact + " ?",
+                ButtonType.YES, ButtonType.CANCEL);
         alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            MainApplication.getRestaurantContactDAO().remove(restaurantContact);
+            view.getRestaurantContactListView().setItems(FXCollections
+                    .observableArrayList(MainApplication.getRestaurantContactDAO()
+                            .getAllFor(restaurantContact.getBelongsTo())));
+            view.getRestaurantContactListView().getSelectionModel().clearSelection();
+            view.getNameField().setText("");
+            view.getPhoneNumberField().setText("");
+            view.getAddressField().setText("");
+            view.getDeleteButton().setVisible(false);
+        } else if (alert.getResult() == ButtonType.CANCEL) {
+            alert.close();
+        }
     }
 
     private void handleSwitchView() {
@@ -143,6 +163,9 @@ public class RetaurantContactController extends Controller {
 
         if (valid) {
             mistakes.delete(0, mistakes.length());
+            view.getNameField().setStyle("-fx-border-color: default");
+            view.getPhoneNumberField().setStyle("-fx-border-color: default");
+            view.getAddressField().setStyle("-fx-border-color: default");
         }
 
         return mistakes.toString();

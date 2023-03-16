@@ -21,6 +21,7 @@ public class RestaurantContact {
         return belongsTo;
     }
 
+    //Todo: Remove or implement when saving a RestaurantContact
     public void setBelongsTo(RestaurantPhoneBook belongsTo) {
         this.belongsTo = belongsTo;
     }
@@ -51,13 +52,9 @@ public class RestaurantContact {
 
     @Override
     public String toString() {
-        return String.format("""
-                        RestaurantContact
-                        \tName:        %s
-                        \tPhoneNumber: %s
-                        \tAddress:     %s
-                                                
-                        \tBelongsTo:   %s""",
-                name, phoneNumber, address, belongsTo);
+        return String.format(""" 
+                        Name:    %-40s  PhoneNumber: %-20s,
+                        Address:  %-40s BelongsTo:   %-40s""",
+                name, phoneNumber, address, belongsTo.getName());
     }
 }

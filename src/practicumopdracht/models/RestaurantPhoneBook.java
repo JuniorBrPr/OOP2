@@ -22,16 +22,59 @@ public class RestaurantPhoneBook {
         this.wheelchairAccessible = wheelchairAccessible;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getCuisine() {
+        return cuisine;
+    }
+
+    public int getTables() {
+        return tables;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public LocalDate getEstablished() {
+        return established;
+    }
+
+    public boolean isWheelchairAccessible() {
+        return wheelchairAccessible;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCuisine(String cuisine) {
+        this.cuisine = cuisine;
+    }
+
+    public void setTables(int tables) {
+        this.tables = tables;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public void setEstablished(LocalDate established) {
+        this.established = established;
+    }
+
+    public void setWheelchairAccessible(boolean wheelchairAccessible) {
+        this.wheelchairAccessible = wheelchairAccessible;
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("""
-                        RestaurantPhoneBook
-                        \tName:                 %s
-                        \tCuisine:              %s
-                        \tTables:               %d
-                        \tRating:               %.1f
-                        \tEstablished:          %s
-                        \tWheelchairAccessible: %s""",
+                        Name:   %-40s Cuisine: %-40s Tables:  %-40d
+                        Rating:  %-40.1f Established: %-40s WheelchairAccessible: %s""",
                 name, cuisine, tables, rating, established, wheelchairAccessible ? "Yes" : "No");
     }
 }

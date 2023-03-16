@@ -78,7 +78,7 @@ public class RestaurantContactView extends View {
         saveButton = new Button("Save");
 
         restaurantContactListView = new ListView<>();
-        restaurantContactListView.setPrefHeight(100);
+        restaurantContactListView.setPrefHeight(220);
         restaurantContactListView.setPrefWidth(MAX_VALUE);
         restaurantContactListView.setPlaceholder(new Label("No restaurant contacts added yet."));
 

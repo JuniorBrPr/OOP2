@@ -13,16 +13,16 @@ public class DummyRestaurantContactDAO extends RestaurantContactDAO {
         this.objects.add
                 (new RestaurantContact
                         (MainApplication.getRestaurantPhoneBookDAO()
-                                .getById(0), "Restaurant 1", "123456789", "Adres 1"));
+                                .getById(0), "RestaurantContact 1", "123456789", "Adres 1"));
         this.objects.add(new RestaurantContact
                 (MainApplication.getRestaurantPhoneBookDAO()
-                        .getById(1), "Restaurant 2", "123456789", "Adres 2"));
+                        .getById(1), "RestaurantContact 2", "123456789", "Adres 2"));
         this.objects.add(new RestaurantContact
                 (MainApplication.getRestaurantPhoneBookDAO()
-                        .getById(2), "Restaurant 3", "123456789", "Adres 3"));
+                        .getById(2), "RestaurantContact 3", "123456789", "Adres 3"));
         this.objects.add(new RestaurantContact
                 (MainApplication.getRestaurantPhoneBookDAO()
-                        .getById(3), "Restaurant 4", "123456789", "Adres 4"));
+                        .getById(3), "RestaurantContact 4", "123456789", "Adres 4"));
         return true;
     }
 }

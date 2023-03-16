@@ -2,6 +2,7 @@ package practicumopdracht.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import practicumopdracht.MainApplication;
 import practicumopdracht.models.RestaurantPhoneBook;
 import practicumopdracht.views.RestaurantPhoneBookView;
@@ -17,7 +18,22 @@ public class RestaurantPhoneBookController extends Controller {
         view.getSaveButton().setOnAction(event -> handleSave());
         view.getNewButton().setOnAction(event -> handleNewRestaurant());
         view.getDeleteButton().setOnAction(event -> handleDelete());
+        view.getDeleteButton().setVisible(false);
         view.getSelectButton().setOnAction(event -> handleSelect());
+
+        view.getRestaurantPhoneBookList().getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    this.view.getDeleteButton().setVisible(observable != null);
+                    if (newValue != null) {
+                        view.getNameField().setText(newValue.getName());
+                        view.getCuisineField().setText(newValue.getCuisine());
+                        view.getTablesField().setText(String.valueOf(newValue.getTables()));
+                        view.getRatingField().setText(String.valueOf(newValue.getRating()));
+                        view.getEstablishedField().setValue(newValue.getEstablished());
+                        view.getWheelchairAccessibleField().setSelected(newValue.isWheelchairAccessible());
+                    }
+                });
+
         view.getRestaurantPhoneBookList()
                 .setItems(FXCollections
                         .observableArrayList(MainApplication
@@ -39,14 +55,29 @@ public class RestaurantPhoneBookController extends Controller {
             alert.setContentText(mistakes);
             alert.showAndWait();
         } else {
-            RestaurantPhoneBook restaurantPhoneBook = new RestaurantPhoneBook(
-                    view.getNameField().getText(),
-                    view.getCuisineField().getText(),
-                    Integer.parseInt(view.getTablesField().getText()),
-                    Double.parseDouble(view.getRatingField().getText()),
-                    view.getEstablishedField().getValue(),
-                    view.getWheelchairAccessibleField().isSelected()
-            );
+            RestaurantPhoneBook restaurantPhoneBook;
+            if (this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem() == null) {
+                restaurantPhoneBook = new RestaurantPhoneBook(
+                        view.getNameField().getText(),
+                        view.getCuisineField().getText(),
+                        Integer.parseInt(view.getTablesField().getText()),
+                        Double.parseDouble(view.getRatingField().getText()),
+                        view.getEstablishedField().getValue(),
+                        view.getWheelchairAccessibleField().isSelected()
+                );
+            } else {
+                restaurantPhoneBook = this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem();
+                restaurantPhoneBook.setName(view.getNameField().getText());
+                restaurantPhoneBook.setCuisine(view.getCuisineField().getText());
+                restaurantPhoneBook.setTables(Integer.parseInt(view.getTablesField().getText()));
+                restaurantPhoneBook.setRating(Double.parseDouble(view.getRatingField().getText()));
+                restaurantPhoneBook.setEstablished(view.getEstablishedField().getValue());
+                restaurantPhoneBook.setWheelchairAccessible(view.getWheelchairAccessibleField().isSelected());
+            }
+            MainApplication.getRestaurantPhoneBookDAO().addOrUpdate(restaurantPhoneBook);
+            this.view.getRestaurantPhoneBookList()
+                    .setItems(FXCollections.observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Saved");
             alert.setHeaderText("Saved".toUpperCase());
@@ -63,21 +94,38 @@ public class RestaurantPhoneBookController extends Controller {
     }
 
     private void handleNewRestaurant() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("New Restaurant");
-        alert.setHeaderText("New Restaurant".toUpperCase());
-        alert.showAndWait();
+        view.getNameField().setText("");
+        view.getCuisineField().setText("");
+        view.getTablesField().setText("");
+        view.getRatingField().setText("");
+        view.getEstablishedField().setValue(null);
+        view.getWheelchairAccessibleField().setSelected(false);
+        view.getRestaurantPhoneBookList().getSelectionModel().clearSelection();
     }
 
     private void handleDelete() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Delete");
-        alert.setHeaderText("Delete".toUpperCase());
+        RestaurantPhoneBook restaurantPhoneBook =
+                this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + restaurantPhoneBook + " ?",
+                ButtonType.YES, ButtonType.CANCEL);
         alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            MainApplication.getRestaurantPhoneBookDAO().remove(restaurantPhoneBook);
+            view.getRestaurantPhoneBookList().setItems(FXCollections
+                    .observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));
+            view.getRestaurantPhoneBookList().getSelectionModel().clearSelection();
+
+            view.getDeleteButton().setVisible(false);
+        } else if (alert.getResult() == ButtonType.CANCEL) {
+            alert.close();
+        }
+
     }
 
     private void handleSelect() {
-        if(this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem() != null) {
+        if (this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem() != null) {
             MainApplication.switchController(new RetaurantContactController(
                     this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem()));
         }
@@ -159,7 +207,11 @@ public class RestaurantPhoneBookController extends Controller {
 
         if (valid) {
             mistakes.delete(0, mistakes.length());
-
+            view.getNameField().setStyle("-fx-border-color: default");
+            view.getCuisineField().setStyle("-fx-border-color: default");
+            view.getTablesField().setStyle("-fx-border-color: default");
+            view.getRatingField().setStyle("-fx-border-color: default");
+            view.getEstablishedField().setStyle("-fx-border-color: default");
         }
 
         return mistakes.toString();
