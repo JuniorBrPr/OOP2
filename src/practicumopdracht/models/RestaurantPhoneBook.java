@@ -13,15 +13,6 @@ public class RestaurantPhoneBook {
     public RestaurantPhoneBook() {
     }
 
-    public RestaurantPhoneBook(String name, String cuisine, int tables, double rating, LocalDate established, boolean wheelchairAccessible) {
-        this.name = name;
-        this.cuisine = cuisine;
-        this.tables = tables;
-        this.rating = rating;
-        this.established = established;
-        this.wheelchairAccessible = wheelchairAccessible;
-    }
-
     public String getName() {
         return name;
     }
@@ -73,8 +64,8 @@ public class RestaurantPhoneBook {
     @Override
     public String toString() {
         return String.format("""
-                        Name:   %-40s Cuisine: %-40s Tables:  %-40d
-                        Rating:  %-40.1f Established: %-40s WheelchairAccessible: %s""",
-                name, cuisine, tables, rating, established, wheelchairAccessible ? "Yes" : "No");
+                        Name: %-30s  Cuisine: %-30s  Rating: %-3.1f
+                        """,
+                name, cuisine, rating);
     }
 }

@@ -55,25 +55,17 @@ public class RestaurantPhoneBookController extends Controller {
             alert.setContentText(mistakes);
             alert.showAndWait();
         } else {
-            RestaurantPhoneBook restaurantPhoneBook;
-            if (this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem() == null) {
-                restaurantPhoneBook = new RestaurantPhoneBook(
-                        view.getNameField().getText(),
-                        view.getCuisineField().getText(),
-                        Integer.parseInt(view.getTablesField().getText()),
-                        Double.parseDouble(view.getRatingField().getText()),
-                        view.getEstablishedField().getValue(),
-                        view.getWheelchairAccessibleField().isSelected()
-                );
-            } else {
-                restaurantPhoneBook = this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem();
-                restaurantPhoneBook.setName(view.getNameField().getText());
-                restaurantPhoneBook.setCuisine(view.getCuisineField().getText());
-                restaurantPhoneBook.setTables(Integer.parseInt(view.getTablesField().getText()));
-                restaurantPhoneBook.setRating(Double.parseDouble(view.getRatingField().getText()));
-                restaurantPhoneBook.setEstablished(view.getEstablishedField().getValue());
-                restaurantPhoneBook.setWheelchairAccessible(view.getWheelchairAccessibleField().isSelected());
-            }
+            RestaurantPhoneBook restaurantPhoneBook =
+                    this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem() == null ?
+                            new RestaurantPhoneBook() :
+                            this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem();
+            restaurantPhoneBook.setName(view.getNameField().getText());
+            restaurantPhoneBook.setCuisine(view.getCuisineField().getText());
+            restaurantPhoneBook.setTables(Integer.parseInt(view.getTablesField().getText()));
+            restaurantPhoneBook.setRating(Double.parseDouble(view.getRatingField().getText()));
+            restaurantPhoneBook.setEstablished(view.getEstablishedField().getValue());
+            restaurantPhoneBook.setWheelchairAccessible(view.getWheelchairAccessibleField().isSelected());
+
             MainApplication.getRestaurantPhoneBookDAO().addOrUpdate(restaurantPhoneBook);
             this.view.getRestaurantPhoneBookList()
                     .setItems(FXCollections.observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));

@@ -14,18 +14,18 @@ public abstract class DAO<T> {
         return this.objects;
     }
 
-    public void addOrUpdate(T model) {
+    public void addOrUpdate(T object) {
         this.objects.stream()
-                .filter(object -> object.equals(model))
+                .filter(obj -> obj.equals(object))
                 .findFirst()
-                .ifPresentOrElse(object ->
+                .ifPresentOrElse(obj ->
                                 this.objects
-                                        .set(this.objects.indexOf(object), model),
-                        () -> this.objects.add(model));
+                                        .set(this.objects.indexOf(obj), object),
+                        () -> this.objects.add(object));
     }
 
-    public void remove(T model) {
-        this.objects.remove(model);
+    public void remove(T object) {
+        this.objects.remove(object);
     }
 
     public abstract boolean save();

@@ -10,18 +10,10 @@ public class RestaurantContact {
     public RestaurantContact() {
     }
 
-    public RestaurantContact(RestaurantPhoneBook belongsTo, String name, String phoneNumber, String address) {
-        this.belongsTo = belongsTo;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-    }
-
     public RestaurantPhoneBook getBelongsTo() {
         return belongsTo;
     }
 
-    //Todo: Remove or implement when saving a RestaurantContact
     public void setBelongsTo(RestaurantPhoneBook belongsTo) {
         this.belongsTo = belongsTo;
     }
@@ -53,8 +45,8 @@ public class RestaurantContact {
     @Override
     public String toString() {
         return String.format(""" 
-                        Name:    %-40s  PhoneNumber: %-20s,
-                        Address:  %-40s BelongsTo:   %-40s""",
-                name, phoneNumber, address, belongsTo.getName());
+                        Name:    %-40s  PhoneNumber: %-20s
+                        """,
+                name, phoneNumber);
     }
 }

@@ -61,20 +61,14 @@ public class RetaurantContactController extends Controller {
             alert.showAndWait();
             view.getAddressField().setText("");
         } else {
-            RestaurantContact restaurantContact;
-            if (view.getRestaurantContactListView().getSelectionModel().getSelectedItem() == null) {
-                restaurantContact = new RestaurantContact(
-                        view.getRestaurantsComboBox().getSelectionModel().getSelectedItem(),
-                        view.getNameField().getText(),
-                        view.getPhoneNumberField().getText(),
-                        view.getAddressField().getText()
-                );
-            } else {
-                restaurantContact = view.getRestaurantContactListView().getSelectionModel().getSelectedItem();
-                restaurantContact.setName(view.getNameField().getText());
-                restaurantContact.setPhoneNumber(view.getPhoneNumberField().getText());
-                restaurantContact.setAddress(view.getAddressField().getText());
-            }
+            RestaurantContact restaurantContact =
+                    view.getRestaurantContactListView().getSelectionModel().getSelectedItem() == null ?
+                            new RestaurantContact() :
+                            view.getRestaurantContactListView().getSelectionModel().getSelectedItem();
+            restaurantContact.setName(view.getNameField().getText());
+            restaurantContact.setPhoneNumber(view.getPhoneNumberField().getText());
+            restaurantContact.setAddress(view.getAddressField().getText());
+            restaurantContact.setBelongsTo(view.getRestaurantsComboBox().getSelectionModel().getSelectedItem());
 
             MainApplication.getRestaurantContactDAO().addOrUpdate(restaurantContact);
             view.getRestaurantContactListView().setItems(FXCollections
