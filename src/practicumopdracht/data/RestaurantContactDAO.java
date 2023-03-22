@@ -5,7 +5,7 @@ import practicumopdracht.models.RestaurantPhoneBook;
 
 import java.util.List;
 
-public class RestaurantContactDAO extends DAO<RestaurantContact> {
+public abstract class RestaurantContactDAO extends DAO<RestaurantContact> {
     protected RestaurantContactDAO() {
     }
 
@@ -13,15 +13,5 @@ public class RestaurantContactDAO extends DAO<RestaurantContact> {
         return this.objects.stream()
                 .filter(restaurantContact -> restaurantContact.getBelongsTo().equals(restaurantPhoneBook))
                 .toList();
-    }
-
-    @Override
-    public boolean save() {
-        return false;
-    }
-
-    @Override
-    public boolean load() {
-        return false;
     }
 }

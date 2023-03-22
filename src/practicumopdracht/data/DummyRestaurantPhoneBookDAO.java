@@ -9,6 +9,11 @@ public class DummyRestaurantPhoneBookDAO extends RestaurantPhoneBookDAO {
     }
 
     @Override
+    public boolean save() {
+        return false;
+    }
+
+    @Override
     public boolean load(){
         this.objects.add(new RestaurantPhoneBook
                 ("Restaurant 1", "Italian", 55, 5.0, LocalDate.now(), true));

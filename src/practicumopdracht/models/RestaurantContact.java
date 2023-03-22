@@ -10,6 +10,13 @@ public class RestaurantContact {
     public RestaurantContact() {
     }
 
+    public RestaurantContact(RestaurantPhoneBook belongsTo, String name, String phoneNumber, String address) {
+        this.belongsTo = belongsTo;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
     public RestaurantPhoneBook getBelongsTo() {
         return belongsTo;
     }

@@ -9,6 +9,11 @@ public class DummyRestaurantContactDAO extends RestaurantContactDAO {
     }
 
     @Override
+    public boolean save() {
+        return false;
+    }
+
+    @Override
     public boolean load() {
         this.objects.add
                 (new RestaurantContact
