@@ -3,7 +3,7 @@ package practicumopdracht.data;
 import java.util.ArrayList;
 
 abstract class DAO<T> {
-    final ArrayList<T> objects;
+    ArrayList<T> objects;
 
     protected DAO() {
         this.objects = new ArrayList<>();

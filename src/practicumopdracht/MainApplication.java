@@ -12,8 +12,8 @@ public class MainApplication extends Application {
     private final int WIDTH = 640;
     private final int HEIGHT = 580;
     private static Stage stage;
-    private final static RestaurantPhoneBookDAO restaurantPhoneBookDAO = new TextRestaurantPhoneBookDAO();
-    private final static RestaurantContactDAO restaurantContactDAO = new TextRestaurantContactDAO();
+    private final static RestaurantPhoneBookDAO restaurantPhoneBookDAO = new BinaryRestaurantPhoneBookDAO();
+    private final static RestaurantContactDAO restaurantContactDAO = new ObjectRestaurantContactDAO();
 
     @Override
     public void start(Stage stage) {
