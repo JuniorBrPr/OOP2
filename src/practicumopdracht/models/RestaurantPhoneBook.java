@@ -1,9 +1,8 @@
 package practicumopdracht.models;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class RestaurantPhoneBook implements Serializable {
+public class RestaurantPhoneBook {
     private String name;
     private String cuisine;
     private int tables;
