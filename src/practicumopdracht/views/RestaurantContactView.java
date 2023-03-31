@@ -2,6 +2,7 @@ package practicumopdracht.views;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -24,7 +25,7 @@ public class RestaurantContactView extends View {
     private ListView<RestaurantContact> restaurantContactListView;
 
     @Override
-    protected void initializeView() {
+    protected Parent initializeView() {
         Font smallFont = Font.font("Helvetica", FontWeight.BLACK, 16);
         Font largeFont = Font.font("Helvetica", FontWeight.BOLD, 36);
 
@@ -101,9 +102,10 @@ public class RestaurantContactView extends View {
                 ((Button) node).setPrefWidth(MAX_VALUE);
                 ((Button) node).setFont(smallFont);
             }
-            if (node instanceof HBox) {
-                ((HBox) node).setAlignment(Pos.CENTER);
-                ((HBox) node).setSpacing(10);
+            if (node instanceof HBox hBox) {
+                //TODO hBox var gebruiken
+                hBox.setAlignment(Pos.CENTER);
+                hBox.setSpacing(10);
 
                 ((HBox) node).getChildren().forEach(child -> {
                     if (child instanceof Button) {
@@ -138,7 +140,7 @@ public class RestaurantContactView extends View {
 
         titleLabel.setFont(largeFont);
 
-        root = mainPanel;
+        return mainPanel;
     }
 
     public Button getNewButton() {

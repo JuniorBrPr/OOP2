@@ -5,18 +5,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import practicumopdracht.controllers.Controller;
 import practicumopdracht.controllers.RestaurantPhoneBookController;
-import practicumopdracht.data.DummyRestaurantContactDAO;
-import practicumopdracht.data.DummyRestaurantPhoneBookDAO;
-import practicumopdracht.data.RestaurantContactDAO;
-import practicumopdracht.data.RestaurantPhoneBookDAO;
+import practicumopdracht.data.*;
 
 public class MainApplication extends Application {
     private final String TITLE = String.format("Practicumopdracht OOP2 - %s", Main.studentNaam);
     private final int WIDTH = 640;
     private final int HEIGHT = 580;
     private static Stage stage;
-    private static RestaurantPhoneBookDAO restaurantPhoneBookDAO = new DummyRestaurantPhoneBookDAO();
-    private static RestaurantContactDAO restaurantContactDAO = new DummyRestaurantContactDAO();
+    private final static RestaurantPhoneBookDAO restaurantPhoneBookDAO = new TextRestaurantPhoneBookDAO();
+    private final static RestaurantContactDAO restaurantContactDAO = new TextRestaurantContactDAO();
 
     @Override
     public void start(Stage stage) {

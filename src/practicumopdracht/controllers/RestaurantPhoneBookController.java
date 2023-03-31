@@ -1,5 +1,6 @@
 package practicumopdracht.controllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -20,6 +21,9 @@ public class RestaurantPhoneBookController extends Controller {
         view.getDeleteButton().setOnAction(event -> handleDelete());
         view.getDeleteButton().setVisible(false);
         view.getSelectButton().setOnAction(event -> handleSelect());
+        view.getSaveMenuItem().setOnAction(event -> handleFileSave());
+        view.getLoadMenuItem().setOnAction(event -> handleFileLoad());
+        view.getExitMenuItem().setOnAction(event -> handleExit());
 
         view.getRestaurantPhoneBookList().getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
@@ -41,6 +45,33 @@ public class RestaurantPhoneBookController extends Controller {
                                 .getAll()));
     }
 
+    private void handleExit() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit");
+        alert.setHeaderText("Save any made changes?");
+        alert.setContentText("If you press \"NO\" ,all unsaved changes will be lost");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait()
+                .filter(response -> {
+                    if (response == ButtonType.YES) {
+                        handleFileSave();
+                        return true;
+                    } else return response == ButtonType.NO;
+                })
+                .ifPresent(response -> Platform.exit());
+    }
+
+    private void handleFileLoad() {
+        MainApplication.getRestaurantPhoneBookDAO().load();
+        view.getRestaurantPhoneBookList()
+                .setItems(FXCollections.observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));
+    }
+
+    private void handleFileSave() {
+        MainApplication.getRestaurantPhoneBookDAO().save();
+        MainApplication.getRestaurantContactDAO().save();
+    }
+
     @Override
     public View getView() {
         return view;
@@ -55,10 +86,12 @@ public class RestaurantPhoneBookController extends Controller {
             alert.setContentText(mistakes);
             alert.showAndWait();
         } else {
+
             RestaurantPhoneBook restaurantPhoneBook =
                     this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem() == null ?
                             new RestaurantPhoneBook() :
                             this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem();
+
             restaurantPhoneBook.setName(view.getNameField().getText());
             restaurantPhoneBook.setCuisine(view.getCuisineField().getText());
             restaurantPhoneBook.setTables(Integer.parseInt(view.getTablesField().getText()));
@@ -67,6 +100,7 @@ public class RestaurantPhoneBookController extends Controller {
             restaurantPhoneBook.setWheelchairAccessible(view.getWheelchairAccessibleField().isSelected());
 
             MainApplication.getRestaurantPhoneBookDAO().addOrUpdate(restaurantPhoneBook);
+
             this.view.getRestaurantPhoneBookList()
                     .setItems(FXCollections.observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));
 

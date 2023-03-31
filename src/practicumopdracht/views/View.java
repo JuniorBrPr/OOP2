@@ -4,13 +4,13 @@ import javafx.scene.Parent;
 
 public abstract class View {
 
-    protected Parent root;
+    private final Parent root;
 
     public View() {
-        initializeView();
+        this.root = initializeView();
     }
 
-    protected abstract void initializeView();
+    protected abstract Parent initializeView();
 
     public Parent getRoot() {
         return root;

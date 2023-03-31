@@ -10,6 +10,6 @@ public abstract class RestaurantPhoneBookDAO extends DAO<RestaurantPhoneBook> {
     }
 
     public int getIdFor(RestaurantPhoneBook restaurantPhoneBook) {
-        return this.objects.contains(restaurantPhoneBook) ? this.objects.indexOf(restaurantPhoneBook) : -1;
+        return this.objects.indexOf(restaurantPhoneBook);
     }
 }

@@ -1,5 +1,6 @@
 package practicumopdracht.models;
 
+import practicumopdracht.MainApplication;
 
 public class RestaurantContact {
     private RestaurantPhoneBook belongsTo;
@@ -49,11 +50,13 @@ public class RestaurantContact {
         return address;
     }
 
+    public String[] getFields() {
+        return new String[]{Integer.toString(MainApplication.getRestaurantPhoneBookDAO().getIdFor(belongsTo)),
+                name, phoneNumber, address};
+    }
+
     @Override
     public String toString() {
-        return String.format(""" 
-                        Name:    %-40s  PhoneNumber: %-20s
-                        """,
-                name, phoneNumber);
+        return String.format("Name: %-40s   PhoneNumber: %-20s", name, phoneNumber);
     }
 }

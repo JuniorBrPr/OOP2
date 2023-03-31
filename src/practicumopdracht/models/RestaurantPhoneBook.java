@@ -71,16 +71,13 @@ public class RestaurantPhoneBook {
         this.wheelchairAccessible = wheelchairAccessible;
     }
 
-    @Override
-    public String toString() {
-        return String.format("""
-                        Name: %-30s  Cuisine: %-30s  Rating: %-3.1f
-                        """,
-                name, cuisine, rating);
-    }
-
     public String[] getFields() {
         return new String[]{name, cuisine, String.valueOf(tables), String.valueOf(rating),
                 established.toString(), String.valueOf(wheelchairAccessible)};
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Name: %-30s Cuisine: %-30s   Rating: %-3.1f", name, cuisine, rating);
     }
 }

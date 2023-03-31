@@ -6,7 +6,7 @@ import java.io.*;
 import java.time.LocalDate;
 
 public class TextRestaurantPhoneBookDAO extends RestaurantPhoneBookDAO {
-    private static final String FILE_NAME = "practicumopdracht/data/restaurantPhoneBook.txt";
+    private static final String FILE_NAME = "src/practicumopdracht/data/files/restaurantPhoneBook.txt";
 
     @Override
     public boolean save() {

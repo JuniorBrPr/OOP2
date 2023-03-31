@@ -2,6 +2,7 @@ package practicumopdracht.views;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -23,9 +24,12 @@ public class RestaurantPhoneBookView extends View {
     private TextField tablesField;
     private DatePicker establishedField;
     private CheckBox wheelchairAccessibleField;
+    MenuItem saveMenuItem;
+    MenuItem loadMenuItem;
+    MenuItem exitMenuItem;
 
     @Override
-    protected void initializeView() {
+    protected Parent initializeView() {
         Font smallFont = Font.font("Helvetica", FontWeight.BLACK, 16);
         Font largeFont = Font.font("Helvetica", FontWeight.BOLD, 36);
 
@@ -168,7 +172,21 @@ public class RestaurantPhoneBookView extends View {
         mainPanel.getChildren().addAll(titleBox, restaurantDetailsGrid,
                 this.saveButton, listContainer, this.selectButton);
 
-        root = mainPanel;
+        MenuBar menuBar = new MenuBar();
+        Menu fileMenu = new Menu("File");
+        saveMenuItem = new MenuItem("Save");
+        loadMenuItem = new MenuItem("Load");
+        exitMenuItem = new MenuItem("Exit");
+
+        fileMenu.getItems().addAll(saveMenuItem, loadMenuItem, exitMenuItem);
+        fileMenu.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+        menuBar.getMenus().add(fileMenu);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setCenter(mainPanel);
+        borderPane.setTop(menuBar);
+
+        return borderPane;
     }
 
     public Button getSaveButton() {
@@ -213,5 +231,17 @@ public class RestaurantPhoneBookView extends View {
 
     public CheckBox getWheelchairAccessibleField() {
         return wheelchairAccessibleField;
+    }
+
+    public MenuItem getSaveMenuItem() {
+        return saveMenuItem;
+    }
+
+    public MenuItem getLoadMenuItem() {
+        return loadMenuItem;
+    }
+
+    public MenuItem getExitMenuItem() {
+        return exitMenuItem;
     }
 }
