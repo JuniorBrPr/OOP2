@@ -24,9 +24,9 @@ public class RestaurantPhoneBookView extends View {
     private TextField tablesField;
     private DatePicker establishedField;
     private CheckBox wheelchairAccessibleField;
-    MenuItem saveMenuItem;
-    MenuItem loadMenuItem;
-    MenuItem exitMenuItem;
+    private MenuItem saveMenuItem;
+    private MenuItem loadMenuItem;
+    private MenuItem exitMenuItem;
 
     @Override
     protected Parent initializeView() {

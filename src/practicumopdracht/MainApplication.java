@@ -25,10 +25,10 @@ public class MainApplication extends Application {
         }
 
         if (!restaurantPhoneBookDAO.load()) {
-            System.err.println("Fout bij het laden van de restaurant telefoonboeken!");
+            System.err.println("Something went wrong while loading the restaurant phone books!");
         }
         if (!restaurantContactDAO.load()) {
-            System.err.println("Fout bij het laden van de restaurant contacten!");
+            System.err.println("Something went wrong while loading the restaurant contacts!");
         }
 
         stage.setTitle(TITLE);

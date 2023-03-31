@@ -38,11 +38,8 @@ public class RestaurantPhoneBookController extends Controller {
                     }
                 });
 
-        view.getRestaurantPhoneBookList()
-                .setItems(FXCollections
-                        .observableArrayList(MainApplication
-                                .getRestaurantPhoneBookDAO()
-                                .getAll()));
+        view.getRestaurantPhoneBookList().setItems(FXCollections
+                .observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));
     }
 
     private void handleExit() {

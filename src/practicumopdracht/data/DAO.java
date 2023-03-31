@@ -1,16 +1,15 @@
 package practicumopdracht.data;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public abstract class DAO<T> {
-    final List<T> objects;
+abstract class DAO<T> {
+    final ArrayList<T> objects;
 
     protected DAO() {
         this.objects = new ArrayList<>();
     }
 
-    public List<T> getAll() {
+    public ArrayList<T> getAll() {
         return this.objects;
     }
 

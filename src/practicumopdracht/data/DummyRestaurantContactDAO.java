@@ -5,9 +5,6 @@ import practicumopdracht.models.RestaurantContact;
 
 public class DummyRestaurantContactDAO extends RestaurantContactDAO {
 
-    public DummyRestaurantContactDAO() {
-    }
-
     @Override
     public boolean save() {
         return false;
