@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import practicumopdracht.MainApplication;
+import practicumopdracht.comparators.AddressNameComparator;
+import practicumopdracht.comparators.ContactNameComparator;
 import practicumopdracht.models.RestaurantContact;
 import practicumopdracht.models.RestaurantPhoneBook;
 import practicumopdracht.views.RestaurantContactView;
@@ -20,6 +22,10 @@ public class RetaurantContactController extends Controller {
         view.getDeleteButton().setOnAction(event -> handleDelete());
         view.getDeleteButton().setVisible(false);
         view.getRestaurantsViewButton().setOnAction(event -> handleSwitchView());
+        view.getNameAscending().setOnAction(event -> handleSort(false, false));
+        view.getNameDescending().setOnAction(event -> handleSort(false, true));
+        view.getAddressNameAscending().setOnAction(event -> handleSort(true, false));
+        view.getAddressNameDescending().setOnAction(event -> handleSort(true, true));
 
         view.getRestaurantsComboBox().setItems(FXCollections
                 .observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));
@@ -44,11 +50,22 @@ public class RetaurantContactController extends Controller {
                         view.getAddressField().setText(newValue.getAddress());
                     }
                 });
+
+        FXCollections.sort(view.getRestaurantContactListView().getItems(),
+                new ContactNameComparator(false));
     }
 
     @Override
     public View getView() {
         return view;
+    }
+
+    private void handleSort(boolean checkAddress, boolean descending){
+        if (checkAddress){
+            FXCollections.sort(view.getRestaurantContactListView().getItems(), new AddressNameComparator(descending));
+        } else {
+            FXCollections.sort(view.getRestaurantContactListView().getItems(), new ContactNameComparator(descending));
+        }
     }
 
     private void handleSave() {
@@ -157,9 +174,9 @@ public class RetaurantContactController extends Controller {
 
         if (valid) {
             mistakes.delete(0, mistakes.length());
-            view.getNameField().setStyle("-fx-border-color: default");
-            view.getPhoneNumberField().setStyle("-fx-border-color: default");
-            view.getAddressField().setStyle("-fx-border-color: default");
+            view.getNameField().setStyle("-fx-border-color: grey");
+            view.getPhoneNumberField().setStyle("-fx-border-color: grey");
+            view.getAddressField().setStyle("-fx-border-color: grey");
         }
 
         return mistakes.toString();

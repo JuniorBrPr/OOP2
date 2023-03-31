@@ -72,6 +72,6 @@ public class RestaurantContact implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Name: %-40s   PhoneNumber: %-20s", name, phoneNumber);
+        return String.format("(Contact)%nName: %-40s\tPhoneNumber: %-20s\tAddress: %-20s", name, phoneNumber, address);
     }
 }

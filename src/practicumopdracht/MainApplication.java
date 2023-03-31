@@ -9,7 +9,7 @@ import practicumopdracht.data.*;
 
 public class MainApplication extends Application {
     private final String TITLE = String.format("Practicumopdracht OOP2 - %s", Main.studentNaam);
-    private final int WIDTH = 640;
+    private final int WIDTH = 840;
     private final int HEIGHT = 580;
     private static Stage stage;
     private final static RestaurantPhoneBookDAO restaurantPhoneBookDAO = new BinaryRestaurantPhoneBookDAO();

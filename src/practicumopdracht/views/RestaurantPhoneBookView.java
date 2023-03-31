@@ -27,6 +27,8 @@ public class RestaurantPhoneBookView extends View {
     private MenuItem saveMenuItem;
     private MenuItem loadMenuItem;
     private MenuItem exitMenuItem;
+    private MenuItem sortAscendingItem;
+    private MenuItem sortDescendingItem;
 
     @Override
     protected Parent initializeView() {
@@ -178,9 +180,15 @@ public class RestaurantPhoneBookView extends View {
         loadMenuItem = new MenuItem("Load");
         exitMenuItem = new MenuItem("Exit");
 
+        Menu sortMenu = new Menu("Sort");
+        sortDescendingItem = new MenuItem("Sort by Name Descending");
+        sortAscendingItem = new MenuItem("Sort by Name Ascending");
+        sortMenu.getItems().addAll(sortDescendingItem, sortAscendingItem);
+        sortMenu.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+
         fileMenu.getItems().addAll(saveMenuItem, loadMenuItem, exitMenuItem);
         fileMenu.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
-        menuBar.getMenus().add(fileMenu);
+        menuBar.getMenus().addAll(fileMenu, sortMenu);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(mainPanel);
@@ -233,15 +241,23 @@ public class RestaurantPhoneBookView extends View {
         return wheelchairAccessibleField;
     }
 
-    public MenuItem getSaveMenuItem() {
+    public MenuItem getSaveItem() {
         return saveMenuItem;
     }
 
-    public MenuItem getLoadMenuItem() {
+    public MenuItem getLoadItem() {
         return loadMenuItem;
     }
 
-    public MenuItem getExitMenuItem() {
+    public MenuItem getExitItem() {
         return exitMenuItem;
+    }
+
+    public MenuItem getSortDescendingItem() {
+        return sortDescendingItem;
+    }
+
+    public MenuItem getSortAscendingItem() {
+        return sortAscendingItem;
     }
 }

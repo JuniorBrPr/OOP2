@@ -79,6 +79,9 @@ public class RestaurantPhoneBook implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Name: %-30s Cuisine: %-30s   Rating: %-3.1f", name, cuisine, rating);
+        return String.format("(Restaurant)%nName: %-30s\tCuisine: %-30s\tRating: %-3.1f\tTables: %-4d" +
+                        "\tWheelchair accessible: %-5s",
+                name, cuisine, rating, tables,
+                wheelchairAccessible ? "Yes" : "No");
     }
 }

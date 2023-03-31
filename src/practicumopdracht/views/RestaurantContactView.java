@@ -23,6 +23,10 @@ public class RestaurantContactView extends View {
     private TextField phoneNumberField;
     private TextArea addressField;
     private ListView<RestaurantContact> restaurantContactListView;
+    private RadioButton AddressNameAscending;
+    private RadioButton AddressNameDescending;
+    private RadioButton nameAscending;
+    private RadioButton nameDescending;
 
     @Override
     protected Parent initializeView() {
@@ -73,6 +77,7 @@ public class RestaurantContactView extends View {
         addressField.setPrefColumnCount(20);
         Label addressLabel = new Label("Address:");
         addressLabel.setLabelFor(addressField);
+        addressLabel.setFont(smallFont);
         VBox addressBox = new VBox();
         addressBox.getChildren().addAll(addressLabel, addressField);
 
@@ -82,6 +87,21 @@ public class RestaurantContactView extends View {
         restaurantContactListView.setPrefHeight(220);
         restaurantContactListView.setPrefWidth(MAX_VALUE);
         restaurantContactListView.setPlaceholder(new Label("No restaurant contacts added yet."));
+
+        Label sortLabel = new Label("Sort by:");
+        ToggleGroup sortGroup = new ToggleGroup();
+        this.AddressNameAscending = new RadioButton("Address and name ascending");
+        this.AddressNameAscending.setToggleGroup(sortGroup);
+        this.AddressNameDescending = new RadioButton("Address and name descending");
+        this.AddressNameDescending.setToggleGroup(sortGroup);
+        this.nameAscending = new RadioButton("Name ascending");
+        this.nameAscending.setToggleGroup(sortGroup);
+        this.nameDescending = new RadioButton("Name descending");
+        this.nameDescending.setToggleGroup(sortGroup);
+        HBox sortBox = new HBox();
+        sortBox.getChildren()
+                .addAll(sortLabel, nameAscending, nameDescending, AddressNameAscending, AddressNameDescending);
+        sortGroup.selectToggle(nameAscending);
 
         this.newButton = new Button("New");
         this.deleteButton = new Button("Delete");
@@ -94,13 +114,13 @@ public class RestaurantContactView extends View {
         mainPanel.setPadding(new Insets(10));
         mainPanel.setPrefHeight(MAX_VALUE);
         mainPanel.setPrefWidth(MAX_VALUE);
-        mainPanel.getChildren().addAll(titleBox, restaurantsBox, nameAndPhoneBox, addressBox, saveButton,
+        mainPanel.getChildren().addAll(titleBox, restaurantsBox, nameAndPhoneBox, addressBox, saveButton, sortBox,
                 restaurantContactListView, listButtonBox);
 
         mainPanel.getChildren().forEach(node -> {
-            if (node instanceof Button) {
-                ((Button) node).setPrefWidth(MAX_VALUE);
-                ((Button) node).setFont(smallFont);
+            if (node instanceof Button button) {
+                button.setPrefWidth(MAX_VALUE);
+                button.setFont(smallFont);
             }
             if (node instanceof HBox hBox) {
                 //TODO hBox var gebruiken
@@ -108,29 +128,29 @@ public class RestaurantContactView extends View {
                 hBox.setSpacing(10);
 
                 ((HBox) node).getChildren().forEach(child -> {
-                    if (child instanceof Button) {
-                        ((Button) child).setPrefWidth(MAX_VALUE);
-                        ((Button) child).setFont(smallFont);
+                    if (child instanceof Button button) {
+                        button.setPrefWidth(MAX_VALUE);
+                        button.setFont(smallFont);
                     }
-                    if (child instanceof Label) {
-                        ((Label) child).setFont(smallFont);
-                        ((Label) child).setAlignment(Pos.CENTER_LEFT);
-                        ((Label) child).setMinWidth(100);
+                    if (child instanceof Label label) {
+                        label.setFont(smallFont);
+                        label.setAlignment(Pos.CENTER_LEFT);
+                        label.setMinWidth(100);
                     }
 
-                    if (child instanceof HBox){
-                        ((HBox) child).setAlignment(Pos.CENTER);
-                        ((HBox) child).setSpacing(10);
-                        ((HBox) child).getChildren().forEach(child2 -> {
-                            if (child2 instanceof Label) {
-                                ((Label) child2).setFont(smallFont);
-                                ((Label) child2).setAlignment(Pos.CENTER_LEFT);
-                                ((Label) child2).setMinWidth(120);
+                    if (child instanceof HBox hBox1) {
+                        hBox1.setAlignment(Pos.CENTER);
+                        hBox1.setSpacing(10);
+                        hBox1.getChildren().forEach(child2 -> {
+                            if (child2 instanceof Label label1) {
+                                label1.setFont(smallFont);
+                                label1.setAlignment(Pos.CENTER_LEFT);
+                                label1.setMinWidth(120);
                             }
-                            if (child2 instanceof TextField) {
-                                ((TextField) child2).setAlignment(Pos.CENTER);
-                                ((TextField) child2).setMinWidth(130);
-                                ((TextField) child2).setPrefWidth(MAX_VALUE);
+                            if (child2 instanceof TextField textField1) {
+                                textField1.setAlignment(Pos.CENTER);
+                                textField1.setMinWidth(130);
+                                textField1.setPrefWidth(MAX_VALUE);
                             }
                         });
                     }
@@ -177,5 +197,21 @@ public class RestaurantContactView extends View {
 
     public ListView<RestaurantContact> getRestaurantContactListView() {
         return restaurantContactListView;
+    }
+
+    public RadioButton getAddressNameAscending() {
+        return AddressNameAscending;
+    }
+
+    public RadioButton getAddressNameDescending() {
+        return AddressNameDescending;
+    }
+
+    public RadioButton getNameAscending() {
+        return nameAscending;
+    }
+
+    public RadioButton getNameDescending() {
+        return nameDescending;
     }
 }

@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import practicumopdracht.MainApplication;
+import practicumopdracht.comparators.RestaurantNameComparator;
 import practicumopdracht.models.RestaurantPhoneBook;
 import practicumopdracht.views.RestaurantPhoneBookView;
 import practicumopdracht.views.View;
@@ -21,9 +22,11 @@ public class RestaurantPhoneBookController extends Controller {
         view.getDeleteButton().setOnAction(event -> handleDelete());
         view.getDeleteButton().setVisible(false);
         view.getSelectButton().setOnAction(event -> handleSelect());
-        view.getSaveMenuItem().setOnAction(event -> handleFileSave());
-        view.getLoadMenuItem().setOnAction(event -> handleFileLoad());
-        view.getExitMenuItem().setOnAction(event -> handleExit());
+        view.getSaveItem().setOnAction(event -> handleFileSave());
+        view.getLoadItem().setOnAction(event -> handleFileLoad());
+        view.getExitItem().setOnAction(event -> handleExit());
+        view.getSortAscendingItem().setOnAction(event -> handleSort(false));
+        view.getSortDescendingItem().setOnAction(event -> handleSort(true));
 
         view.getRestaurantPhoneBookList().getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
@@ -40,6 +43,10 @@ public class RestaurantPhoneBookController extends Controller {
 
         view.getRestaurantPhoneBookList().setItems(FXCollections.observableArrayList(
                 MainApplication.getRestaurantPhoneBookDAO().getAll()));
+    }
+
+    private void handleSort(boolean descending) {
+        FXCollections.sort(view.getRestaurantPhoneBookList().getItems(), new RestaurantNameComparator(descending));
     }
 
     private void handleExit() {
@@ -78,7 +85,12 @@ public class RestaurantPhoneBookController extends Controller {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Save");
         alert.setHeaderText("Save to file?");
-        alert.setContentText("If you press \"YES\" ,all unsaved changes will be lost");
+        alert.setContentText("""
+                Select "YES" to save to file.
+                
+                Make sure you have loaded the file first!
+                Make sure you have saved any changes to the restaurant contact list.
+                """);
         alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
         alert.showAndWait()
                 .filter(response -> response == ButtonType.YES)
@@ -253,11 +265,11 @@ public class RestaurantPhoneBookController extends Controller {
 
         if (valid) {
             mistakes.delete(0, mistakes.length());
-            view.getNameField().setStyle("-fx-border-color: default");
-            view.getCuisineField().setStyle("-fx-border-color: default");
-            view.getTablesField().setStyle("-fx-border-color: default");
-            view.getRatingField().setStyle("-fx-border-color: default");
-            view.getEstablishedField().setStyle("-fx-border-color: default");
+            view.getNameField().setStyle("-fx-border-color: grey");
+            view.getCuisineField().setStyle("-fx-border-color: grey");
+            view.getTablesField().setStyle("-fx-border-color: grey");
+            view.getRatingField().setStyle("-fx-border-color: grey");
+            view.getEstablishedField().setStyle("-fx-border-color: grey");
         }
 
         return mistakes.toString();
