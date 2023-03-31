@@ -24,13 +24,6 @@ public class MainApplication extends Application {
             return;
         }
 
-        if (!restaurantPhoneBookDAO.load()) {
-            System.err.println("Something went wrong while loading the restaurant phone books!");
-        }
-        if (!restaurantContactDAO.load()) {
-            System.err.println("Something went wrong while loading the restaurant contacts!");
-        }
-
         stage.setTitle(TITLE);
         stage.setWidth(WIDTH);
         stage.setHeight(HEIGHT);

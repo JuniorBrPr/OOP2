@@ -38,35 +38,58 @@ public class RestaurantPhoneBookController extends Controller {
                     }
                 });
 
-        view.getRestaurantPhoneBookList().setItems(FXCollections
-                .observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));
+        view.getRestaurantPhoneBookList().setItems(FXCollections.observableArrayList(
+                MainApplication.getRestaurantPhoneBookDAO().getAll()));
     }
 
     private void handleExit() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exit");
-        alert.setHeaderText("Save any made changes?");
-        alert.setContentText("If you press \"NO\" ,all unsaved changes will be lost");
-        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-        alert.showAndWait()
-                .filter(response -> {
-                    if (response == ButtonType.YES) {
-                        handleFileSave();
-                        return true;
-                    } else return response == ButtonType.NO;
-                })
-                .ifPresent(response -> Platform.exit());
+        handleFileSave();
+        Platform.exit();
     }
 
     private void handleFileLoad() {
-        MainApplication.getRestaurantPhoneBookDAO().load();
-        view.getRestaurantPhoneBookList()
-                .setItems(FXCollections.observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Load");
+        alert.setHeaderText("Load from file?");
+        alert.setContentText("If you press \"YES\" ,all unsaved changes will be lost");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+        alert.showAndWait()
+                .filter(response -> response == ButtonType.YES)
+                .ifPresent(response -> {
+                    if (MainApplication.getRestaurantPhoneBookDAO().load() &&
+                            MainApplication.getRestaurantContactDAO().load()) {
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle("Load");
+                        alert1.setHeaderText("Load from file");
+                        alert1.setContentText("Load from file was successful");
+                        view.getRestaurantPhoneBookList()
+                                .setItems(FXCollections.observableArrayList(MainApplication.getRestaurantPhoneBookDAO()
+                                        .getAll()));
+                    } else {
+                        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                        alert1.setTitle("Load");
+                        alert1.setHeaderText("Load from file");
+                        alert1.setContentText("Load from file was not successful");
+                    }
+                });
     }
 
     private void handleFileSave() {
-        MainApplication.getRestaurantPhoneBookDAO().save();
-        MainApplication.getRestaurantContactDAO().save();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Save");
+        alert.setHeaderText("Save to file?");
+        alert.setContentText("If you press \"YES\" ,all unsaved changes will be lost");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+        alert.showAndWait()
+                .filter(response -> response == ButtonType.YES)
+                .ifPresent(response -> {
+                    MainApplication.getRestaurantPhoneBookDAO().save();
+                    MainApplication.getRestaurantContactDAO().save();
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                    alert1.setTitle("Save");
+                    alert1.setHeaderText("Save to file");
+                    alert1.setContentText("Save to file was successful");
+                });
     }
 
     @Override
