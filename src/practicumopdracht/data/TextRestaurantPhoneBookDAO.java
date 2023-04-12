@@ -5,9 +5,17 @@ import practicumopdracht.models.RestaurantPhoneBook;
 import java.io.*;
 import java.time.LocalDate;
 
+/**
+ * Text DAO for RestaurantPhoneBook objects.
+ */
 public class TextRestaurantPhoneBookDAO extends RestaurantPhoneBookDAO {
     private static final String FILE_NAME = "src/practicumopdracht/data/files/restaurantPhoneBook.txt";
 
+    /**
+     * Saves the RestaurantPhoneBook objects to a text file.
+     *
+     * @return boolean true if successful, false if not
+     */
     @Override
     public boolean save() {
         try (FileWriter fileWriter = new FileWriter(FILE_NAME);
@@ -30,6 +38,11 @@ public class TextRestaurantPhoneBookDAO extends RestaurantPhoneBookDAO {
         }
     }
 
+    /**
+     * Loads the RestaurantPhoneBook objects from a text file.
+     *
+     * @return boolean true if successful, false if not
+     */
     @Override
     public boolean load() {
         try (FileReader fileReader = new FileReader(FILE_NAME);

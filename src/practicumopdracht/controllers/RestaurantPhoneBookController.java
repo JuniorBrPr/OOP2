@@ -12,6 +12,9 @@ import practicumopdracht.views.View;
 
 import java.time.LocalDate;
 
+/**
+ * Controller for RestaurantPhoneBookView.
+ */
 public class RestaurantPhoneBookController extends Controller {
     private final RestaurantPhoneBookView view;
 
@@ -45,15 +48,26 @@ public class RestaurantPhoneBookController extends Controller {
                 MainApplication.getRestaurantPhoneBookDAO().getAll()));
     }
 
+    /**
+     * Sorts the list of restaurants.
+     *
+     * @param descending boolean indicating whether the list should be sorted descending or ascending.
+     */
     private void handleSort(boolean descending) {
         FXCollections.sort(view.getRestaurantPhoneBookList().getItems(), new RestaurantNameComparator(descending));
     }
 
+    /**
+     * Handles the exit button.
+     */
     private void handleExit() {
         handleFileSave();
         Platform.exit();
     }
 
+    /**
+     * Handles loading from file.
+     */
     private void handleFileLoad() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Load");
@@ -81,13 +95,16 @@ public class RestaurantPhoneBookController extends Controller {
                 });
     }
 
+    /**
+     * Handles saving to file.
+     */
     private void handleFileSave() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Save");
         alert.setHeaderText("Save to file?");
         alert.setContentText("""
                 Select "YES" to save to file.
-                
+                                
                 Make sure you have loaded the file first!
                 Make sure you have saved any changes to the restaurant contact list.
                 """);
@@ -109,6 +126,9 @@ public class RestaurantPhoneBookController extends Controller {
         return view;
     }
 
+    /**
+     * Handles saving a restaurant.
+     */
     private void handleSave() {
         String mistakes = validate();
         if (!mistakes.isBlank()) {
@@ -151,6 +171,9 @@ public class RestaurantPhoneBookController extends Controller {
 
     }
 
+    /**
+     * Handles adding a new restaurant.
+     */
     private void handleNewRestaurant() {
         view.getNameField().setText("");
         view.getCuisineField().setText("");
@@ -161,6 +184,9 @@ public class RestaurantPhoneBookController extends Controller {
         view.getRestaurantPhoneBookList().getSelectionModel().clearSelection();
     }
 
+    /**
+     * Handles deleting a restaurant.
+     */
     private void handleDelete() {
         RestaurantPhoneBook restaurantPhoneBook =
                 this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem();
@@ -171,6 +197,8 @@ public class RestaurantPhoneBookController extends Controller {
 
         if (alert.getResult() == ButtonType.YES) {
             MainApplication.getRestaurantPhoneBookDAO().remove(restaurantPhoneBook);
+            MainApplication.getRestaurantContactDAO().getAllFor(restaurantPhoneBook).forEach(
+                    MainApplication.getRestaurantContactDAO()::remove);
             view.getRestaurantPhoneBookList().setItems(FXCollections
                     .observableArrayList(MainApplication.getRestaurantPhoneBookDAO().getAll()));
             view.getRestaurantPhoneBookList().getSelectionModel().clearSelection();
@@ -182,6 +210,9 @@ public class RestaurantPhoneBookController extends Controller {
 
     }
 
+    /**
+     * Handles selecting a restaurant.
+     */
     private void handleSelect() {
         if (this.view.getRestaurantPhoneBookList().getSelectionModel().getSelectedItem() != null) {
             MainApplication.switchController(new RetaurantContactController(
@@ -189,6 +220,11 @@ public class RestaurantPhoneBookController extends Controller {
         }
     }
 
+    /**
+     * Validates the input for the restaurant.
+     *
+     * @return a string with the mistakes found.
+     */
     private String validate() {
         boolean valid = true;
         StringBuilder mistakes = new StringBuilder("Please correct the following mistakes:\n");

@@ -4,6 +4,10 @@ import practicumopdracht.models.RestaurantContact;
 
 import java.util.Comparator;
 
+/**
+ * Comparator for RestaurantContact objects.
+ * Sorts on address and name.
+ */
 public class AddressNameComparator implements Comparator<RestaurantContact> {
     private final boolean sortDescending;
 
@@ -11,6 +15,14 @@ public class AddressNameComparator implements Comparator<RestaurantContact> {
         this.sortDescending = sortDescending;
     }
 
+    /**
+     * Compares two RestaurantContact objects.
+     * Sorts on address and name.
+     *
+     * @param o1 RestaurantContact object 1
+     * @param o2 RestaurantContact object 2
+     * @return int
+     */
     @Override
     public int compare(RestaurantContact o1, RestaurantContact o2) {
         if (this.sortDescending) {

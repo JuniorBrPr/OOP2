@@ -4,6 +4,9 @@ import practicumopdracht.MainApplication;
 
 import java.io.*;
 
+/**
+ * RestaurantContact model.
+ */
 public class RestaurantContact implements Serializable {
     private transient RestaurantPhoneBook belongsTo;
     private String name;
@@ -13,6 +16,14 @@ public class RestaurantContact implements Serializable {
     public RestaurantContact() {
     }
 
+    /**
+     * Constructor for RestaurantContact.
+     *
+     * @param belongsTo   RestaurantPhoneBook object
+     * @param name        String
+     * @param phoneNumber String
+     * @param address     String
+     */
     public RestaurantContact(RestaurantPhoneBook belongsTo, String name, String phoneNumber, String address) {
         this.belongsTo = belongsTo;
         this.name = name;
@@ -20,13 +31,25 @@ public class RestaurantContact implements Serializable {
         this.address = address;
     }
 
-
+    /**
+     * Writes the RestaurantContact object to a file.
+     *
+     * @param out ObjectOutputStream
+     * @throws IOException if an error occurs
+     */
     @Serial
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.write(MainApplication.getRestaurantPhoneBookDAO().getIdFor(belongsTo));
         out.defaultWriteObject();
     }
 
+    /**
+     * Reads the RestaurantContact object from a file.
+     *
+     * @param in ObjectInputStream
+     * @throws IOException            if an error occurs
+     * @throws ClassNotFoundException if an error occurs
+     */
     @Serial
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         belongsTo = MainApplication.getRestaurantPhoneBookDAO().getById(in.read());

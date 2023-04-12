@@ -40,10 +40,8 @@ public class RestaurantPhoneBookView extends View {
         titleLabel.setFont(largeFont);
 
         HBox titleBox = new HBox();
-        titleBox.setBorder(new Border(
-                new BorderStroke(
-                        Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT
-                )));
+        titleBox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY,
+                BorderWidths.DEFAULT)));
         titleBox.setAlignment(Pos.TOP_CENTER);
         titleBox.getChildren().add(titleLabel);
 
@@ -171,8 +169,8 @@ public class RestaurantPhoneBookView extends View {
         mainPanel.setSpacing(10);
         mainPanel.setAlignment(Pos.CENTER);
         mainPanel.setPadding(new Insets(10));
-        mainPanel.getChildren().addAll(titleBox, restaurantDetailsGrid,
-                this.saveButton, listContainer, this.selectButton);
+        mainPanel.getChildren().addAll(titleBox, restaurantDetailsGrid, this.saveButton, listContainer,
+                this.selectButton);
 
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");

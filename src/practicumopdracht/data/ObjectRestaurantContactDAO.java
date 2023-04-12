@@ -5,9 +5,17 @@ import practicumopdracht.models.RestaurantContact;
 import java.io.*;
 import java.util.ArrayList;
 
-public class ObjectRestaurantContactDAO extends RestaurantContactDAO{
+/**
+ * Saves and loads RestaurantContact objects to and from a file.
+ */
+public class ObjectRestaurantContactDAO extends RestaurantContactDAO {
     private final String FILE_NAME = "src/practicumopdracht/data/files/restaurantContact.ser";
 
+    /**
+     * Saves the RestaurantContact objects to a file.
+     *
+     * @return boolean true if successful, false if not
+     */
     @Override
     public boolean save() {
         try (FileOutputStream fileOutputStream = new FileOutputStream(FILE_NAME);
@@ -24,6 +32,11 @@ public class ObjectRestaurantContactDAO extends RestaurantContactDAO{
         }
     }
 
+    /**
+     * Loads the RestaurantContact objects from a file.
+     *
+     * @return boolean true if successful, false if not
+     */
     @Override
     public boolean load() {
         try (FileInputStream fileInputStream = new FileInputStream(FILE_NAME);

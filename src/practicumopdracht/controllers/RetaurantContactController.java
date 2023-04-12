@@ -11,6 +11,9 @@ import practicumopdracht.models.RestaurantPhoneBook;
 import practicumopdracht.views.RestaurantContactView;
 import practicumopdracht.views.View;
 
+/**
+ * Controller for RestaurantContactView.
+ */
 public class RetaurantContactController extends Controller {
     private final RestaurantContactView view;
 
@@ -60,14 +63,23 @@ public class RetaurantContactController extends Controller {
         return view;
     }
 
-    private void handleSort(boolean checkAddress, boolean descending){
-        if (checkAddress){
+    /**
+     * Handles sorting of the listview.
+     *
+     * @param checkAddress if true, sort on address and name.
+     * @param descending   if true, sort descending.
+     */
+    private void handleSort(boolean checkAddress, boolean descending) {
+        if (checkAddress) {
             FXCollections.sort(view.getRestaurantContactListView().getItems(), new AddressNameComparator(descending));
         } else {
             FXCollections.sort(view.getRestaurantContactListView().getItems(), new ContactNameComparator(descending));
         }
     }
 
+    /**
+     * Handles saving of a restaurant contact.
+     */
     private void handleSave() {
         String mistakes = validate();
         if (!mistakes.isBlank()) {
@@ -103,6 +115,9 @@ public class RetaurantContactController extends Controller {
         }
     }
 
+    /**
+     * Clears the text-fields and listview selection.
+     */
     private void handleNewRestaurantContact() {
         this.view.getRestaurantContactListView().getSelectionModel().clearSelection();
         view.getNameField().setText("");
@@ -110,6 +125,9 @@ public class RetaurantContactController extends Controller {
         view.getAddressField().setText("");
     }
 
+    /**
+     * Handles the deletion of a restaurant contact.
+     */
     private void handleDelete() {
         RestaurantContact restaurantContact = view.getRestaurantContactListView().getSelectionModel().getSelectedItem();
 
@@ -132,10 +150,18 @@ public class RetaurantContactController extends Controller {
         }
     }
 
+    /**
+     * Switches the view to the restaurant phone book view.
+     */
     private void handleSwitchView() {
         MainApplication.switchController(new RestaurantPhoneBookController());
     }
 
+    /**
+     * Validates the text-fields.
+     *
+     * @return a string with the mistakes if any are found.
+     */
     private String validate() {
         boolean valid = true;
         StringBuilder mistakes = new StringBuilder("Please correct the following mistakes:\n");
@@ -181,5 +207,4 @@ public class RetaurantContactController extends Controller {
 
         return mistakes.toString();
     }
-
 }

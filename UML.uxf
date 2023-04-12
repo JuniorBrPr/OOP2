@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.0.0">
-  <zoom_level>7</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1008</x>
-      <y>469</y>
-      <w>602</w>
-      <h>147</h>
+      <x>1296</x>
+      <y>603</y>
+      <w>774</w>
+      <h>189</h>
     </coordinates>
     <panel_attributes>&lt;&lt;models&gt;&gt;
 RestaurantPhoneBook
@@ -31,10 +31,10 @@ RestaurantPhoneBook
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2345</x>
-      <y>469</y>
-      <w>476</w>
-      <h>147</h>
+      <x>3015</x>
+      <y>603</y>
+      <w>612</w>
+      <h>189</h>
     </coordinates>
     <panel_attributes>&lt;&lt;models&gt;&gt;
 RestaurantContact
@@ -55,10 +55,10 @@ readObject(in: ObjectInputStream):void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1316</x>
-      <y>63</y>
-      <w>126</w>
-      <h>28</h>
+      <x>1692</x>
+      <y>81</y>
+      <w>162</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>&lt;&lt; javafx.application&gt;&gt;
 Application</panel_attributes>
@@ -67,10 +67,10 @@ Application</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>959</x>
+      <x>1233</x>
       <y>0</y>
-      <w>280</w>
-      <h>140</h>
+      <w>360</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>MainApplication
 --
@@ -90,10 +90,10 @@ _+getRestaurantContactDAO(): RestaurantContactDAO_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1232</x>
-      <y>70</y>
-      <w>98</w>
-      <h>21</h>
+      <x>1584</x>
+      <y>90</y>
+      <w>126</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
@@ -101,10 +101,10 @@ _+getRestaurantContactDAO(): RestaurantContactDAO_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3388</x>
-      <y>252</y>
-      <w>273</w>
-      <h>147</h>
+      <x>4356</x>
+      <y>324</y>
+      <w>351</w>
+      <h>189</h>
     </coordinates>
     <panel_attributes>&lt;&lt;views&gt;&gt;
 RestaurantContactView
@@ -125,10 +125,10 @@ RestaurantContactView
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3206</x>
-      <y>154</y>
-      <w>112</w>
-      <h>84</h>
+      <x>4122</x>
+      <y>198</y>
+      <w>144</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>&lt;&lt;views&gt;&gt;
 /View/
@@ -143,10 +143,10 @@ RestaurantContactView
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2926</x>
-      <y>287</y>
-      <w>273</w>
-      <h>203</h>
+      <x>3762</x>
+      <y>369</y>
+      <w>351</w>
+      <h>261</h>
     </coordinates>
     <panel_attributes>&lt;&lt;views&gt;&gt;
 RestaurantPhoneBookView
@@ -172,10 +172,10 @@ RestaurantPhoneBookView
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1316</x>
-      <y>98</y>
-      <w>126</w>
-      <h>35</h>
+      <x>1692</x>
+      <y>126</y>
+      <w>162</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>Main
 --
@@ -185,10 +185,10 @@ RestaurantPhoneBookView
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1540</x>
-      <y>203</y>
-      <w>1680</w>
-      <h>21</h>
+      <x>1980</x>
+      <y>261</y>
+      <w>2160</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>2380.0;10.0;10.0;10.0</additional_attributes>
@@ -196,10 +196,10 @@ RestaurantPhoneBookView
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1232</x>
-      <y>112</y>
-      <w>98</w>
-      <h>21</h>
+      <x>1584</x>
+      <y>144</y>
+      <w>126</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
@@ -207,10 +207,10 @@ RestaurantPhoneBookView
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3262</x>
-      <y>231</y>
-      <w>210</w>
-      <h>35</h>
+      <x>4194</x>
+      <y>297</y>
+      <w>270</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;280.0;30.0</additional_attributes>
@@ -218,10 +218,10 @@ RestaurantPhoneBookView
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2989</x>
-      <y>231</y>
-      <w>280</w>
-      <h>70</h>
+      <x>3843</x>
+      <y>297</y>
+      <w>360</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>380.0;10.0;10.0;80.0</additional_attributes>
@@ -229,10 +229,10 @@ RestaurantPhoneBookView
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1463</x>
-      <y>196</y>
-      <w>84</w>
-      <h>42</h>
+      <x>1881</x>
+      <y>252</y>
+      <w>108</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>&lt;&lt;controllers&gt;&gt;
 /Controller/
@@ -243,10 +243,10 @@ RestaurantPhoneBookView
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1365</x>
-      <y>273</y>
-      <w>161</w>
-      <h>161</h>
+      <x>1755</x>
+      <y>351</y>
+      <w>207</w>
+      <h>207</h>
     </coordinates>
     <panel_attributes>&lt;&lt;controllers&gt;&gt;
 RestaurantPhoneBookController
@@ -268,10 +268,10 @@ RestaurantPhoneBookController
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2240</x>
-      <y>273</y>
-      <w>343</w>
-      <h>126</h>
+      <x>2880</x>
+      <y>351</y>
+      <w>441</w>
+      <h>162</h>
     </coordinates>
     <panel_attributes>&lt;&lt;controllers&gt;&gt;
 RestaurantContactController
@@ -290,10 +290,10 @@ RestaurantContactController
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1442</x>
-      <y>231</y>
-      <w>63</w>
-      <h>56</h>
+      <x>1854</x>
+      <y>297</y>
+      <w>81</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>70.0;10.0;10.0;60.0</additional_attributes>
@@ -301,10 +301,10 @@ RestaurantContactController
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1505</x>
-      <y>231</y>
-      <w>819</w>
-      <h>56</h>
+      <x>1935</x>
+      <y>297</y>
+      <w>1053</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;1150.0;60.0</additional_attributes>
@@ -312,10 +312,10 @@ RestaurantContactController
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1302</x>
-      <y>427</y>
-      <w>154</w>
-      <h>56</h>
+      <x>1674</x>
+      <y>549</y>
+      <w>198</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;60.0;200.0;10.0</additional_attributes>
@@ -323,10 +323,10 @@ RestaurantContactController
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2415</x>
-      <y>392</y>
-      <w>182</w>
-      <h>91</h>
+      <x>3105</x>
+      <y>504</y>
+      <w>234</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>240.0;110.0;10.0;10.0</additional_attributes>
@@ -334,10 +334,10 @@ RestaurantContactController
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1106</x>
-      <y>133</y>
-      <w>413</w>
-      <h>77</h>
+      <x>1422</x>
+      <y>171</y>
+      <w>531</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>570.0;90.0;10.0;10.0</additional_attributes>
@@ -345,10 +345,10 @@ RestaurantContactController
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>483</x>
-      <y>196</y>
-      <w>147</w>
-      <h>112</h>
+      <x>621</x>
+      <y>252</y>
+      <w>189</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>&lt;&lt;data&gt;&gt;
 /DAO&lt;T&gt;/
@@ -367,10 +367,10 @@ RestaurantContactController
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>91</x>
-      <y>392</y>
-      <w>371</w>
-      <h>42</h>
+      <x>117</x>
+      <y>504</y>
+      <w>477</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>&lt;&lt;data&gt;&gt;
 /RestaurantContactDAO&lt;RestaurantContact&gt;/
@@ -382,10 +382,10 @@ RestaurantContactController
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>623</x>
-      <y>378</y>
-      <w>273</w>
-      <h>56</h>
+      <x>801</x>
+      <y>486</y>
+      <w>351</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>&lt;&lt;data&gt;&gt;
 /RestaurantPhoneBookDAO&lt;RestaurantPhoneBook&gt;/
@@ -398,10 +398,10 @@ RestaurantContactController
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>329</x>
-      <y>469</y>
-      <w>154</w>
-      <h>56</h>
+      <x>423</x>
+      <y>603</y>
+      <w>198</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>&lt;&lt;data&gt;&gt;
 DummyRestaurantContactDAO
@@ -413,10 +413,10 @@ DummyRestaurantContactDAO
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>826</x>
-      <y>462</y>
-      <w>168</w>
-      <h>56</h>
+      <x>1062</x>
+      <y>594</y>
+      <w>216</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>&lt;&lt;data&gt;&gt;
 DummyRestaurantPhoneBookDAO
@@ -428,10 +428,10 @@ DummyRestaurantPhoneBookDAO
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>546</x>
-      <y>301</y>
-      <w>210</w>
-      <h>91</h>
+      <x>702</x>
+      <y>387</y>
+      <w>270</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;280.0;110.0</additional_attributes>
@@ -439,10 +439,10 @@ DummyRestaurantPhoneBookDAO
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>301</y>
-      <w>210</w>
-      <h>105</h>
+      <x>450</x>
+      <y>387</y>
+      <w>270</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>280.0;10.0;10.0;130.0</additional_attributes>
@@ -450,10 +450,10 @@ DummyRestaurantPhoneBookDAO
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>784</x>
-      <y>427</y>
-      <w>203</w>
-      <h>49</h>
+      <x>1008</x>
+      <y>549</y>
+      <w>261</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;270.0;50.0</additional_attributes>
@@ -461,10 +461,10 @@ DummyRestaurantPhoneBookDAO
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>553</x>
-      <y>133</y>
-      <w>525</w>
-      <h>77</h>
+      <x>711</x>
+      <y>171</y>
+      <w>675</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;90.0;730.0;10.0</additional_attributes>
@@ -472,10 +472,10 @@ DummyRestaurantPhoneBookDAO
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>497</x>
-      <y>462</y>
-      <w>154</w>
-      <h>70</h>
+      <x>639</x>
+      <y>594</y>
+      <w>198</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;data&gt;&gt;
 TextRestaurantPhoneBookDAO
@@ -490,9 +490,9 @@ _-FILE_NAME: String_
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>469</y>
-      <w>133</w>
-      <h>70</h>
+      <y>603</y>
+      <w>171</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;data&gt;&gt;
 TextRestaurantContactDAO
@@ -506,10 +506,10 @@ _-FILE_NAME: String_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>427</y>
-      <w>182</w>
-      <h>49</h>
+      <x>720</x>
+      <y>549</y>
+      <w>234</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>240.0;10.0;10.0;50.0</additional_attributes>
@@ -517,10 +517,10 @@ _-FILE_NAME: String_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>56</x>
-      <y>427</y>
-      <w>231</w>
-      <h>56</h>
+      <x>72</x>
+      <y>549</y>
+      <w>297</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>310.0;10.0;10.0;60.0</additional_attributes>
@@ -528,10 +528,10 @@ _-FILE_NAME: String_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>294</x>
-      <y>427</y>
-      <w>126</w>
-      <h>56</h>
+      <x>378</x>
+      <y>549</y>
+      <w>162</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;160.0;60.0</additional_attributes>
@@ -539,10 +539,10 @@ _-FILE_NAME: String_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2023</x>
-      <y>469</y>
-      <w>238</w>
-      <h>70</h>
+      <x>2601</x>
+      <y>603</y>
+      <w>306</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;java.util&gt;&gt;
 ContactNameComparator&lt;RestaurantContact&gt;
@@ -556,10 +556,10 @@ ContactNameComparator&lt;RestaurantContact&gt;
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2667</x>
-      <y>287</y>
-      <w>147</w>
-      <h>28</h>
+      <x>3429</x>
+      <y>369</y>
+      <w>189</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>&lt;&lt;java.io&gt;&gt;
 Serializible
@@ -569,10 +569,10 @@ Serializible
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2023</x>
-      <y>581</y>
-      <w>238</w>
-      <h>70</h>
+      <x>2601</x>
+      <y>747</y>
+      <w>306</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;java.util&gt;&gt;
 AddressNameComparator&lt;RestaurantContact&gt;
@@ -586,10 +586,10 @@ AddressNameComparator&lt;RestaurantContact&gt;
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1631</x>
-      <y>469</y>
-      <w>259</w>
-      <h>70</h>
+      <x>2097</x>
+      <y>603</y>
+      <w>333</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;java.util&gt;&gt;
 RestaurantNameComparator&lt;RestaurantPhoneBook&gt;
@@ -603,10 +603,10 @@ RestaurantNameComparator&lt;RestaurantPhoneBook&gt;
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1792</x>
-      <y>329</y>
-      <w>147</w>
-      <h>49</h>
+      <x>2304</x>
+      <y>423</y>
+      <w>189</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>&lt;&lt;java.util&gt;&gt;
 Comparator&lt;T&gt;
@@ -617,54 +617,54 @@ Comparator&lt;T&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2583</x>
-      <y>308</y>
-      <w>175</w>
-      <h>175</h>
+      <x>3348</x>
+      <y>396</y>
+      <w>189</w>
+      <h>225</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;230.0;230.0;10.0</additional_attributes>
+    <additional_attributes>190.0;10.0;10.0;230.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1750</x>
-      <y>371</y>
-      <w>126</w>
-      <h>112</h>
+      <x>2268</x>
+      <y>477</y>
+      <w>135</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;140.0;160.0;10.0</additional_attributes>
+    <additional_attributes>130.0;10.0;10.0;140.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1855</x>
-      <y>371</y>
-      <w>203</w>
-      <h>224</h>
+      <x>2385</x>
+      <y>477</y>
+      <w>279</w>
+      <h>288</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>270.0;300.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;290.0;300.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1855</x>
-      <y>371</y>
-      <w>266</w>
-      <h>112</h>
+      <x>2421</x>
+      <y>477</y>
+      <w>261</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>360.0;140.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;270.0;140.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1519</x>
-      <y>294</y>
-      <w>735</w>
-      <h>28</h>
+      <x>1953</x>
+      <y>378</y>
+      <w>945</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;</panel_attributes>
     <additional_attributes>10.0;10.0;1030.0;20.0</additional_attributes>
@@ -672,10 +672,10 @@ Comparator&lt;T&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1519</x>
-      <y>350</y>
-      <w>238</w>
-      <h>133</h>
+      <x>1953</x>
+      <y>450</y>
+      <w>306</w>
+      <h>171</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>320.0;170.0;10.0;10.0</additional_attributes>
@@ -683,10 +683,10 @@ Comparator&lt;T&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2163</x>
-      <y>392</y>
-      <w>168</w>
-      <h>91</h>
+      <x>2736</x>
+      <y>504</y>
+      <w>216</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;110.0;220.0;10.0</additional_attributes>
@@ -694,10 +694,10 @@ Comparator&lt;T&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2233</x>
-      <y>392</y>
-      <w>161</w>
-      <h>203</h>
+      <x>2871</x>
+      <y>504</y>
+      <w>207</w>
+      <h>261</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;270.0;210.0;10.0</additional_attributes>
@@ -705,10 +705,10 @@ Comparator&lt;T&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2254</x>
-      <y>497</y>
-      <w>105</w>
-      <h>21</h>
+      <x>2898</x>
+      <y>639</y>
+      <w>135</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
@@ -716,10 +716,10 @@ Comparator&lt;T&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2254</x>
-      <y>581</y>
-      <w>105</w>
-      <h>21</h>
+      <x>2898</x>
+      <y>747</y>
+      <w>135</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
@@ -727,10 +727,10 @@ Comparator&lt;T&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1603</x>
-      <y>497</y>
-      <w>42</w>
-      <h>21</h>
+      <x>2061</x>
+      <y>639</y>
+      <w>54</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
@@ -738,10 +738,10 @@ Comparator&lt;T&gt;
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>182</x>
-      <y>469</y>
-      <w>133</w>
-      <h>70</h>
+      <x>234</x>
+      <y>603</y>
+      <w>171</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;data&gt;&gt;
 ObjectRestaurantContactDAO
@@ -755,10 +755,10 @@ _-FILE_NAME: String_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>427</y>
-      <w>21</w>
-      <h>56</h>
+      <x>360</x>
+      <y>549</y>
+      <w>27</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -766,10 +766,10 @@ _-FILE_NAME: String_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>665</x>
-      <y>462</y>
-      <w>154</w>
-      <h>70</h>
+      <x>855</x>
+      <y>594</y>
+      <w>198</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;data&gt;&gt;
 BinaryRestaurantPhoneBookDAO
@@ -783,10 +783,10 @@ _-FILE_NAME: String_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>742</x>
-      <y>427</y>
-      <w>21</w>
-      <h>49</h>
+      <x>954</x>
+      <y>549</y>
+      <w>27</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>

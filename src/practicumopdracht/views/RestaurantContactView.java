@@ -13,6 +13,7 @@ import practicumopdracht.models.RestaurantPhoneBook;
 
 import static java.lang.Integer.MAX_VALUE;
 
+
 public class RestaurantContactView extends View {
     private Button newButton;
     private Button saveButton;
@@ -55,7 +56,7 @@ public class RestaurantContactView extends View {
         restaurantsBox.getChildren().addAll(restaurantsLabel, restaurantsComboBox);
 
         nameField = new TextField();
-        nameField.setPromptText("Restaurant name");
+        nameField.setPromptText("Contact name");
         Label nameLabel = new Label("Name:");
         nameLabel.setLabelFor(nameField);
         HBox nameBox = new HBox();
@@ -72,7 +73,7 @@ public class RestaurantContactView extends View {
         nameAndPhoneBox.getChildren().addAll(nameBox, phoneNumberBox);
 
         addressField = new TextArea();
-        addressField.setPromptText("Restaurant address");
+        addressField.setPromptText("Contact address");
         addressField.setPrefRowCount(3);
         addressField.setPrefColumnCount(20);
         Label addressLabel = new Label("Address:");

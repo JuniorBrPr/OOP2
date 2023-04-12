@@ -31,8 +31,8 @@ public class Main {
         System.out.println("---");
 
         String integriteitsVerklaring =
-            "Ik verklaar naar eer en geweten dat ik deze practicumopdracht zelf zal maken en geen plagiaat zal plegen " +
-            "door code van anderen over te nemen.\n\n" +
+            "Ik verklaar naar eer en geweten dat ik deze practicumopdracht zelf zal maken en geen plagiaat zal plegen" +
+            " door code van anderen over te nemen.\n\n" +
 
             "Ik ben me ervan bewust dat:\n"+
             "\t- Er (geautomatiseerd) op fraude wordt gescanned\n" +

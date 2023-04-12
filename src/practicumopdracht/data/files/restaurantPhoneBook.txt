@@ -1,3 +1,1 @@
-sdfsdf;324234;33;2.0;2023-03-01;true;
-sdfds;dfsdf;12;1.0;2023-02-01;true;
-PizzaBakkers;Pizzeria;55;8.9;2019-03-08;true;
+

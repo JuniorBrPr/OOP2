@@ -5,9 +5,17 @@ import practicumopdracht.models.RestaurantContact;
 
 import java.io.*;
 
+/**
+ * DAO for RestaurantContact objects.
+ */
 public class TextRestaurantContactDAO extends RestaurantContactDAO {
     private static final String FILE_NAME = "src/practicumopdracht/data/files/restaurantContact.txt";
 
+    /**
+     * Saves the RestaurantContact objects to a text file.
+     *
+     * @return boolean true if successful, false if not
+     */
     @Override
     public boolean save() {
         try (FileWriter fileWriter = new FileWriter(FILE_NAME);
@@ -30,6 +38,11 @@ public class TextRestaurantContactDAO extends RestaurantContactDAO {
         }
     }
 
+    /**
+     * Loads the RestaurantContact objects from a text file.
+     *
+     * @return boolean true if successful, false if not
+     */
     @Override
     public boolean load() {
         try (FileReader fileReader = new FileReader(FILE_NAME);

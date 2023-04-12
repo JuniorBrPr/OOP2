@@ -2,6 +2,9 @@ package practicumopdracht.models;
 
 import java.time.LocalDate;
 
+/**
+ * Model for RestaurantPhoneBook objects.
+ */
 public class RestaurantPhoneBook {
     private String name;
     private String cuisine;
@@ -13,6 +16,16 @@ public class RestaurantPhoneBook {
     public RestaurantPhoneBook() {
     }
 
+    /**
+     * Constructor for RestaurantPhoneBook.
+     *
+     * @param name                 String
+     * @param cuisine              String
+     * @param tables               int
+     * @param rating               double
+     * @param established          LocalDate
+     * @param wheelchairAccessible boolean
+     */
     public RestaurantPhoneBook(String name, String cuisine, int tables, double rating, LocalDate established,
                                boolean wheelchairAccessible) {
         this.name = name;
@@ -71,6 +84,11 @@ public class RestaurantPhoneBook {
         this.wheelchairAccessible = wheelchairAccessible;
     }
 
+    /**
+     * Returns the fields of the RestaurantPhoneBook object as an array of Strings.
+     *
+     * @return String[] fields
+     */
     public String[] getFields() {
         return new String[]{name, cuisine, String.valueOf(tables), String.valueOf(rating),
                 established.toString(), String.valueOf(wheelchairAccessible)};

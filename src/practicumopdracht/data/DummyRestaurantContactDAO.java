@@ -3,13 +3,26 @@ package practicumopdracht.data;
 import practicumopdracht.MainApplication;
 import practicumopdracht.models.RestaurantContact;
 
+/**
+ * Dummy DAO for RestaurantContact objects.
+ */
 public class DummyRestaurantContactDAO extends RestaurantContactDAO {
 
+    /**
+     * Mock save method.
+     *
+     * @return boolean
+     */
     @Override
     public boolean save() {
         return false;
     }
 
+    /**
+     * Loads the RestaurantContact objects from hard coded data.
+     *
+     * @return boolean
+     */
     @Override
     public boolean load() {
         this.objects.add
