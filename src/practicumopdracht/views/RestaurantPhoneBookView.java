@@ -76,7 +76,7 @@ public class RestaurantPhoneBookView extends View {
         ratingBox.getChildren().addAll(ratingLabel, ratingField);
 
         tablesField = new TextField();
-        tablesField.setPromptText("City");
+        tablesField.setPromptText("Amount of tables");
 
         Label tablesLabel = new Label("Tables:");
         tablesLabel.setLabelFor(tablesField);
